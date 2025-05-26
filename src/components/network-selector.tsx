@@ -5,6 +5,7 @@ import { useWallet } from "@/context/wallet-context"
 import { Check, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { cn } from "../lib/utils"
 
 const networks = [
   { id: "unique", name: "Unique Network" },
@@ -21,29 +22,52 @@ export default function NetworkSelector() {
     setIsOpen(false)
   }
 
-  const currentNetworkName = networks.find((n) => n.id === currentNetwork)?.name || "Select Network"
+  const currentNetworkName =
+    networks.find((n) => n.id === currentNetwork)?.name || "Select Network"
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="flex items-center gap-2">
-          <div className={`w-3 h-3 rounded-full ${currentNetwork === "unique" ? "bg-blue-500" : "bg-purple-500"}`} />
+        <Button
+          variant="outline"
+          className={cn("flex items-center gap-2")}
+        >
+          <div
+            className={cn(
+              "w-3 h-3 rounded-full",
+              currentNetwork === "unique" ? "bg-blue-500" : "bg-purple-500"
+            )}
+          />
           <span>{currentNetworkName}</span>
-          <ChevronDown className="h-4 w-4 opacity-50" />
+          <ChevronDown className={cn("h-4 w-4 opacity-50")} />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[200px]">
+      <DropdownMenuContent
+        align="end"
+        className={cn("w-[200px]")}
+      >
         {networks.map((network) => (
           <DropdownMenuItem
             key={network.id}
             onClick={() => handleNetworkChange(network.id)}
-            className="flex items-center justify-between cursor-pointer"
+            className={cn(
+              "flex items-center justify-between cursor-pointer"
+            )}
           >
-            <div className="flex items-center gap-2">
-              <div className={`w-3 h-3 rounded-full ${network.id === "unique" ? "bg-blue-500" : "bg-purple-500"}`} />
+            <div className={cn("flex items-center gap-2")}>  
+              <div
+                className={cn(
+                  "w-3 h-3 rounded-full",
+                  network.id === "unique"
+                    ? "bg-blue-500"
+                    : "bg-purple-500"
+                )}
+              />
               <span>{network.name}</span>
             </div>
-            {currentNetwork === network.id && <Check className="h-4 w-4" />}
+            {currentNetwork === network.id && (
+              <Check className={cn("h-4 w-4")} />
+            )}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

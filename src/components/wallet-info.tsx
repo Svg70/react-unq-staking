@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useWallet } from "@/context/wallet-context"
 import BalanceInfo from "@/components/balance-info"
+import { cn } from "../lib/utils"
 
 interface WalletInfoProps {
   activeTab?: "stake" | "unstake"
@@ -21,34 +22,40 @@ export default function WalletInfo({ activeTab = "stake" }: WalletInfoProps) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className={cn("space-y-4")}>
       {isConnecting && (
-        <div className="flex items-center justify-center p-4">
-          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-orange-500 mr-2"></div>
-          <span className="text-gray-600 dark:text-gray-300">Connecting wallet...</span>
+        <div className={cn("flex items-center justify-center p-4")}>  
+          <div className={cn("animate-spin rounded-full h-6 w-6 border-b-2 border-orange-500 mr-2")} />
+          <span className={cn("text-gray-600 dark:text-gray-300")}>Connecting wallet...</span>
         </div>
       )}
+
       <div>
-        <div className="flex items-center mb-2">
-          <div className="flex items-center text-orange-500">
-            <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
+        <div className={cn("flex items-center mb-2")}>  
+          <div className={cn("flex items-center text-orange-500")}>  
+            <svg className={cn("w-6 h-6 mr-2")} viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
               <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" />
             </svg>
-            <span className="font-medium">Current account</span>
+            <span className={cn("font-medium")}>Current account</span>
           </div>
         </div>
 
-        <div className="relative">
+        <div className={cn("relative")}>  
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-md bg-white"
+            className={cn(
+              "w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-md bg-white dark:bg-gray-700"
+            )}
           >
-            <div className="flex items-center">
-              <span className="text-gray-500">{walletAddress}</span>
-            </div>
+            <span className={cn("text-gray-500 dark:text-gray-200")}>
+              {walletAddress}
+            </span>
             <svg
-              className={`w-5 h-5 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
+              className={cn(
+                "w-5 h-5 transition-transform",
+                isDropdownOpen && "rotate-180"
+              )}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -58,21 +65,17 @@ export default function WalletInfo({ activeTab = "stake" }: WalletInfoProps) {
           </button>
 
           {isDropdownOpen && accounts.length > 0 && (
-            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
-              <div className="p-2">
+            <div className={cn("absolute z-10 w-full mt-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg")}>
+              <div className={cn("p-2")}>
                 {accounts.map((account) => (
                   <div
                     key={account.address}
-                    className="p-2 hover:bg-gray-100 rounded cursor-pointer"
                     onClick={() => handleSelectAccount(account.address)}
+                    className={cn("p-2 hover:bg-gray-100 dark:hover:bg-gray-600 rounded cursor-pointer")}
                   >
-                    <div className="flex items-center">
-                      <span className="font-medium mr-2 text-gray-700 dark:text-gray-300">
-                        {account.name || "Account"}
-                      </span>
-                      <span className="text-gray-500">
-                        {account.address.substring(0, 6)}...{account.address.substring(account.address.length - 6)}
-                      </span>
+                    <div className={cn("flex items-center")}>  
+                      <span className={cn("font-medium mr-2 text-gray-700 dark:text-gray-300")}>{account.name || "Account"}</span>
+                      <span className={cn("text-gray-500 dark:text-gray-400")}>{account.address.substring(0, 6)}...{account.address.slice(-6)}</span>
                     </div>
                   </div>
                 ))}

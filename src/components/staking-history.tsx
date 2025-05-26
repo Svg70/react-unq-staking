@@ -12,6 +12,8 @@ import {
 } from "@/utils/staking-api"
 import { RefreshCw } from "lucide-react"
 
+const P = "react_unq_staking_app-"; // Наш префикс
+
 export default function StakingHistory() {
   const { connected, walletAddress, registerRefreshCallback } = useWallet()
   const [activeTab, setActiveTab] = useState("staking")
@@ -52,7 +54,6 @@ export default function StakingHistory() {
     }
   }
 
-  // Function to refresh all transaction data
   const refreshTransactions = async () => {
     if (isRefreshing || !connected || !walletAddress) return
 
@@ -86,12 +87,8 @@ export default function StakingHistory() {
     }
   }, [connected, walletAddress])
 
-  // Register refresh callback
   useEffect(() => {
-    // Register the callback for refreshing transaction history
     const unregister = registerRefreshCallback(refreshTransactions)
-
-    // Clean up on unmount
     return unregister
   }, [registerRefreshCallback])
 
@@ -100,48 +97,48 @@ export default function StakingHistory() {
   }
 
   return (
-    <section className="py-12 bg-white dark:bg-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Your Transaction History</h2>
+    <section className={`react_unq_staking_app-py-12 react_unq_staking_app-bg-white dark:react_unq_staking_app-bg-gray-800`}>
+      <div className={`react_unq_staking_app-container react_unq_staking_app-mx-auto react_unq_staking_app-px-4`}>
+        <div className={`react_unq_staking_app-flex react_unq_staking_app-justify-between react_unq_staking_app-items-center react_unq_staking_app-mb-6`}>
+          <h2 className={`react_unq_staking_app-text-2xl react_unq_staking_app-font-bold`}>Your Transaction History</h2>
           <button
             onClick={refreshTransactions}
             disabled={isRefreshing || stakingLoading || transfersLoading}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className={`react_unq_staking_app-flex react_unq_staking_app-items-center react_unq_staking_app-gap-2 react_unq_staking_app-px-4 react_unq_staking_app-py-2 react_unq_staking_app-bg-blue-500 react_unq_staking_app-text-white react_unq_staking_app-rounded-md hover:react_unq_staking_app-bg-blue-600 disabled:react_unq_staking_app-opacity-50 disabled:react_unq_staking_app-cursor-not-allowed react_unq_staking_app-transition-colors`}
           >
-            <RefreshCw className={`w-4 h-4 ${isRefreshing ? "animate-spin" : ""}`} />
+            <RefreshCw className={`react_unq_staking_app-w-4 react_unq_staking_app-h-4 ${isRefreshing ? `react_unq_staking_app-animate-spin` : ""}`} />
             Refresh
           </button>
         </div>
 
-        <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden">
-          <div className="border-b border-gray-200 dark:border-gray-600">
-            <div className="flex">
+        <div className={`react_unq_staking_app-bg-white dark:react_unq_staking_app-bg-gray-700 react_unq_staking_app-rounded-lg react_unq_staking_app-shadow-md react_unq_staking_app-overflow-hidden`}>
+          <div className={`react_unq_staking_app-border-b react_unq_staking_app-border-gray-200 dark:react_unq_staking_app-border-gray-600`}>
+            <div className={`react_unq_staking_app-flex`}>
               <button
-                className={`px-6 py-3 text-sm font-medium ${
+                className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-sm react_unq_staking_app-font-medium ${
                   activeTab === "staking"
-                    ? "border-b-2 border-blue-500 text-blue-500"
-                    : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                    ? `react_unq_staking_app-border-b-2 react_unq_staking_app-border-blue-500 react_unq_staking_app-text-blue-500`
+                    : `react_unq_staking_app-text-gray-500 hover:react_unq_staking_app-text-gray-700 dark:react_unq_staking_app-text-gray-400 dark:hover:react_unq_staking_app-text-gray-200`
                 }`}
                 onClick={() => setActiveTab("staking")}
               >
                 Staking History ({stake.length})
               </button>
               <button
-                className={`px-6 py-3 text-sm font-medium ${
+                className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-sm react_unq_staking_app-font-medium ${
                   activeTab === "unstaking"
-                    ? "border-b-2 border-blue-500 text-blue-500"
-                    : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                    ? `react_unq_staking_app-border-b-2 react_unq_staking_app-border-blue-500 react_unq_staking_app-text-blue-500`
+                    : `react_unq_staking_app-text-gray-500 hover:react_unq_staking_app-text-gray-700 dark:react_unq_staking_app-text-gray-400 dark:hover:react_unq_staking_app-text-gray-200`
                 }`}
                 onClick={() => setActiveTab("unstaking")}
               >
                 Unstaking History ({unstake.length})
               </button>
               <button
-                className={`px-6 py-3 text-sm font-medium ${
+                className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-sm react_unq_staking_app-font-medium ${
                   activeTab === "transfers"
-                    ? "border-b-2 border-blue-500 text-blue-500"
-                    : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                    ? `react_unq_staking_app-border-b-2 react_unq_staking_app-border-blue-500 react_unq_staking_app-text-blue-500`
+                    : `react_unq_staking_app-text-gray-500 hover:react_unq_staking_app-text-gray-700 dark:react_unq_staking_app-text-gray-400 dark:hover:react_unq_staking_app-text-gray-200`
                 }`}
                 onClick={() => setActiveTab("transfers")}
               >
@@ -150,71 +147,71 @@ export default function StakingHistory() {
             </div>
           </div>
 
-          <div className="p-6">
+          <div className={`react_unq_staking_app-p-6`}>
             {activeTab === "staking" ? (
               stakingLoading ? (
-                <div className="flex justify-center py-8">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+                <div className={`react_unq_staking_app-flex react_unq_staking_app-justify-center react_unq_staking_app-py-8`}>
+                  <div className={`react_unq_staking_app-animate-spin react_unq_staking_app-rounded-full react_unq_staking_app-h-12 react_unq_staking_app-w-12 react_unq_staking_app-border-b-2 react_unq_staking_app-border-blue-500`}></div>
                 </div>
               ) : stake.length === 0 ? (
-                <div className="text-center py-8 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                  <p className="text-gray-500 dark:text-gray-400">No staking history found</p>
+                <div className={`react_unq_staking_app-text-center react_unq_staking_app-py-8 react_unq_staking_app-bg-gray-50 dark:react_unq_staking_app-bg-gray-700 react_unq_staking_app-rounded-lg`}>
+                  <p className={`react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-400`}>No staking history found</p>
                 </div>
               ) : (
-                <div className="overflow-x-auto">
-                  <table className="min-w-full bg-white dark:bg-gray-800 rounded-lg overflow-hidden">
-                    <thead className="bg-gray-50 dark:bg-gray-700">
+                <div className={`react_unq_staking_app-overflow-x-auto`}>
+                  <table className={`react_unq_staking_app-min-w-full react_unq_staking_app-bg-white dark:react_unq_staking_app-bg-gray-800 react_unq_staking_app-rounded-lg react_unq_staking_app-overflow-hidden`}>
+                    <thead className={`react_unq_staking_app-bg-gray-50 dark:react_unq_staking_app-bg-gray-700`}>
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                        <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                           Block
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                        <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                           Hash
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                        <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                           Time
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                        <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                           Status
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                        <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                           Method
                         </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                        <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-right react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                           Amount
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                    <tbody className={`react_unq_staking_app-divide-y react_unq_staking_app-divide-gray-200 dark:react_unq_staking_app-divide-gray-700`}>
                       {stake.map((tx, index) => (
-                        <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                        <tr key={index} className={`hover:react_unq_staking_app-bg-gray-50 dark:hover:react_unq_staking_app-bg-gray-700`}>
+                          <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4 react_unq_staking_app-whitespace-nowrap react_unq_staking_app-text-sm react_unq_staking_app-font-medium react_unq_staking_app-text-gray-900 dark:react_unq_staking_app-text-gray-100`}>
                             {tx.blockNumber}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-mono">
+                          <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4 react_unq_staking_app-whitespace-nowrap react_unq_staking_app-text-sm react_unq_staking_app-font-mono`}>
                             <a
                               href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-blue-600 hover:text-blue-800 hover:underline"
+                              className={`react_unq_staking_app-text-blue-600 hover:react_unq_staking_app-text-blue-800 hover:react_unq_staking_app-underline`}
                             >
                               {formatHash(tx.hash)}
                             </a>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                          <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4 react_unq_staking_app-whitespace-nowrap react_unq_staking_app-text-sm react_unq_staking_app-text-gray-600 dark:react_unq_staking_app-text-gray-400`}>
                             {formatDate(tx.createdAt)}
                           </td>
-                          <td className="px-6 py-4">
-                            <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-800 dark:text-green-100">
+                          <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4`}>
+                            <span className={`react_unq_staking_app-inline-flex react_unq_staking_app-items-center react_unq_staking_app-rounded-full react_unq_staking_app-bg-green-50 react_unq_staking_app-px-2 react_unq_staking_app-py-1 react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-green-700 dark:react_unq_staking_app-bg-green-800 dark:react_unq_staking_app-text-green-100`}>
                               Success
                             </span>
                           </td>
-                          <td className="px-6 py-4">
-                            <span className="text-sm text-gray-700 dark:text-gray-300">
+                          <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4`}>
+                            <span className={`react_unq_staking_app-text-sm react_unq_staking_app-text-gray-700 dark:react_unq_staking_app-text-gray-300`}>
                               {tx.section} ({tx.method})
                             </span>
                           </td>
-                          <td className="px-6 py-4 text-right font-mono text-sm text-gray-900 dark:text-gray-100">
+                          <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4 react_unq_staking_app-text-right react_unq_staking_app-font-mono react_unq_staking_app-text-sm react_unq_staking_app-text-gray-900 dark:react_unq_staking_app-text-gray-100`}>
                             {formatAmount(tx.amount)}
                           </td>
                         </tr>
@@ -225,68 +222,68 @@ export default function StakingHistory() {
               )
             ) : activeTab === "unstaking" ? (
               stakingLoading ? (
-                <div className="flex justify-center py-8">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+                <div className={`react_unq_staking_app-flex react_unq_staking_app-justify-center react_unq_staking_app-py-8`}>
+                  <div className={`react_unq_staking_app-animate-spin react_unq_staking_app-rounded-full react_unq_staking_app-h-12 react_unq_staking_app-w-12 react_unq_staking_app-border-b-2 react_unq_staking_app-border-blue-500`}></div>
                 </div>
               ) : unstake.length === 0 ? (
-                <div className="text-center py-8 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                  <p className="text-gray-500 dark:text-gray-400">No unstaking history found</p>
+                <div className={`react_unq_staking_app-text-center react_unq_staking_app-py-8 react_unq_staking_app-bg-gray-50 dark:react_unq_staking_app-bg-gray-700 react_unq_staking_app-rounded-lg`}>
+                  <p className={`react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-400`}>No unstaking history found</p>
                 </div>
               ) : (
-                <div className="overflow-x-auto">
-                  <table className="min-w-full bg-white dark:bg-gray-800 rounded-lg overflow-hidden">
-                    <thead className="bg-gray-50 dark:bg-gray-700">
+                <div className={`react_unq_staking_app-overflow-x-auto`}>
+                  <table className={`react_unq_staking_app-min-w-full react_unq_staking_app-bg-white dark:react_unq_staking_app-bg-gray-800 react_unq_staking_app-rounded-lg react_unq_staking_app-overflow-hidden`}>
+                    <thead className={`react_unq_staking_app-bg-gray-50 dark:react_unq_staking_app-bg-gray-700`}>
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                        <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                           Block
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                        <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                           Hash
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                        <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                           Time
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                        <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                           Status
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                        <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                           Method
                         </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                        <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-right react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                           Amount
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                    <tbody className={`react_unq_staking_app-divide-y react_unq_staking_app-divide-gray-200 dark:react_unq_staking_app-divide-gray-700`}>
                       {unstake.map((tx, index) => (
-                        <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                        <tr key={index} className={`hover:react_unq_staking_app-bg-gray-50 dark:hover:react_unq_staking_app-bg-gray-700`}>
+                          <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4 react_unq_staking_app-whitespace-nowrap react_unq_staking_app-text-sm react_unq_staking_app-font-medium react_unq_staking_app-text-gray-900 dark:react_unq_staking_app-text-gray-100`}>
                             {tx.blockNumber}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-mono">
+                          <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4 react_unq_staking_app-whitespace-nowrap react_unq_staking_app-text-sm react_unq_staking_app-font-mono`}>
                             <a
                               href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-blue-600 hover:text-blue-800 hover:underline"
+                              className={`react_unq_staking_app-text-blue-600 hover:react_unq_staking_app-text-blue-800 hover:react_unq_staking_app-underline`}
                             >
                               {formatHash(tx.hash)}
                             </a>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                          <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4 react_unq_staking_app-whitespace-nowrap react_unq_staking_app-text-sm react_unq_staking_app-text-gray-600 dark:react_unq_staking_app-text-gray-400`}>
                             {formatDate(tx.createdAt)}
                           </td>
-                          <td className="px-6 py-4">
-                            <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-800 dark:text-green-100">
+                          <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4`}>
+                            <span className={`react_unq_staking_app-inline-flex react_unq_staking_app-items-center react_unq_staking_app-rounded-full react_unq_staking_app-bg-green-50 react_unq_staking_app-px-2 react_unq_staking_app-py-1 react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-green-700 dark:react_unq_staking_app-bg-green-800 dark:react_unq_staking_app-text-green-100`}>
                               Success
                             </span>
                           </td>
-                          <td className="px-6 py-4">
-                            <span className="text-sm text-gray-700 dark:text-gray-300">
+                          <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4`}>
+                            <span className={`react_unq_staking_app-text-sm react_unq_staking_app-text-gray-700 dark:react_unq_staking_app-text-gray-300`}>
                               {tx.section} ({tx.method})
                             </span>
                           </td>
-                          <td className="px-6 py-4 text-right font-mono text-sm text-gray-900 dark:text-gray-100">
+                          <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4 react_unq_staking_app-text-right react_unq_staking_app-font-mono react_unq_staking_app-text-sm react_unq_staking_app-text-gray-900 dark:react_unq_staking_app-text-gray-100`}>
                             {formatAmount(tx.amount)}
                           </td>
                         </tr>
@@ -296,68 +293,68 @@ export default function StakingHistory() {
                 </div>
               )
             ) : transfersLoading ? (
-              <div className="flex justify-center py-8">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+              <div className={`react_unq_staking_app-flex react_unq_staking_app-justify-center react_unq_staking_app-py-8`}>
+                <div className={`react_unq_staking_app-animate-spin react_unq_staking_app-rounded-full react_unq_staking_app-h-12 react_unq_staking_app-w-12 react_unq_staking_app-border-b-2 react_unq_staking_app-border-blue-500`}></div>
               </div>
             ) : transferTransactions.length === 0 ? (
-              <div className="text-center py-8 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <p className="text-gray-500 dark:text-gray-400">No transfer transactions found</p>
+              <div className={`react_unq_staking_app-text-center react_unq_staking_app-py-8 react_unq_staking_app-bg-gray-50 dark:react_unq_staking_app-bg-gray-700 react_unq_staking_app-rounded-lg`}>
+                <p className={`react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-400`}>No transfer transactions found</p>
               </div>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="min-w-full bg-white dark:bg-gray-800 rounded-lg overflow-hidden">
-                  <thead className="bg-gray-50 dark:bg-gray-700">
+              <div className={`react_unq_staking_app-overflow-x-auto`}>
+                <table className={`react_unq_staking_app-min-w-full react_unq_staking_app-bg-white dark:react_unq_staking_app-bg-gray-800 react_unq_staking_app-rounded-lg react_unq_staking_app-overflow-hidden`}>
+                  <thead className={`react_unq_staking_app-bg-gray-50 dark:react_unq_staking_app-bg-gray-700`}>
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                         Block
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                         Hash
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                         Time
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                         Status
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-left react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                         Method
                       </th>
-                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      <th className={`react_unq_staking_app-px-6 react_unq_staking_app-py-3 react_unq_staking_app-text-right react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-gray-500 dark:react_unq_staking_app-text-gray-300 react_unq_staking_app-uppercase react_unq_staking_app-tracking-wider`}>
                         Amount
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  <tbody className={`react_unq_staking_app-divide-y react_unq_staking_app-divide-gray-200 dark:react_unq_staking_app-divide-gray-700`}>
                     {transferTransactions.map((tx, index) => (
-                      <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                      <tr key={index} className={`hover:react_unq_staking_app-bg-gray-50 dark:hover:react_unq_staking_app-bg-gray-700`}>
+                        <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4 react_unq_staking_app-whitespace-nowrap react_unq_staking_app-text-sm react_unq_staking_app-font-medium react_unq_staking_app-text-gray-900 dark:react_unq_staking_app-text-gray-100`}>
                           {tx.blockNumber}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-mono">
+                        <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4 react_unq_staking_app-whitespace-nowrap react_unq_staking_app-text-sm react_unq_staking_app-font-mono`}>
                           <a
                             href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800 hover:underline"
+                            className={`react_unq_staking_app-text-blue-600 hover:react_unq_staking_app-text-blue-800 hover:react_unq_staking_app-underline`}
                           >
                             {formatHash(tx.hash)}
                           </a>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                        <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4 react_unq_staking_app-whitespace-nowrap react_unq_staking_app-text-sm react_unq_staking_app-text-gray-600 dark:react_unq_staking_app-text-gray-400`}>
                           {formatDate(tx.createdAt)}
                         </td>
-                        <td className="px-6 py-4">
-                          <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-800 dark:text-green-100">
+                        <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4`}>
+                          <span className={`react_unq_staking_app-inline-flex react_unq_staking_app-items-center react_unq_staking_app-rounded-full react_unq_staking_app-bg-green-50 react_unq_staking_app-px-2 react_unq_staking_app-py-1 react_unq_staking_app-text-xs react_unq_staking_app-font-medium react_unq_staking_app-text-green-700 dark:react_unq_staking_app-bg-green-800 dark:react_unq_staking_app-text-green-100`}>
                             Success
                           </span>
                         </td>
-                        <td className="px-6 py-4">
-                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                        <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4`}>
+                          <span className={`react_unq_staking_app-text-sm react_unq_staking_app-text-gray-700 dark:react_unq_staking_app-text-gray-300`}>
                             {tx.section} ({tx.method})
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-right font-mono text-sm text-gray-900 dark:text-gray-100">
+                        <td className={`react_unq_staking_app-px-6 react_unq_staking_app-py-4 react_unq_staking_app-text-right react_unq_staking_app-font-mono react_unq_staking_app-text-sm react_unq_staking_app-text-gray-900 dark:react_unq_staking_app-text-gray-100`}>
                           {formatAmount(tx.amount)}
                         </td>
                       </tr>

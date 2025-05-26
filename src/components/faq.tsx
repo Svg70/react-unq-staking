@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { cn } from "../lib/utils"
 
 interface FAQItem {
   id: string
@@ -61,22 +62,41 @@ export default function FAQ() {
   }
 
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900" id="FAQ">
-      <div className="container mx-auto px-4">
-        <header className="mb-12 text-center">
-          <h2 className="text-3xl font-bold">FAQ</h2>
+    <section id="FAQ" className={cn("py-16 bg-gray-50 dark:bg-gray-900")}>
+      <div className={cn("container mx-auto px-4")}>
+        <header className={cn("mb-12 text-center")}>
+          <h2 className={cn("text-3xl font-bold")}>FAQ</h2>
         </header>
 
-        <div className="max-w-3xl mx-auto">
+        <div className={cn("max-w-3xl mx-auto")}>
           {faqItems.map((item) => (
-            <div key={item.id} className="mb-4 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+            <div
+              key={item.id}
+              className={cn(
+                "mb-4",
+                "border",
+                "border-gray-200 dark:border-gray-700",
+                "rounded-lg",
+                "overflow-hidden"
+              )}
+            >
               <button
-                className="flex justify-between items-center w-full p-5 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
+                className={cn(
+                  "flex justify-between items-center",
+                  "w-full p-5",
+                  "text-left",
+                  "bg-white dark:bg-gray-800",
+                  "hover:bg-gray-50 dark:hover:bg-gray-700"
+                )}
                 onClick={() => toggleItem(item.id)}
               >
-                <h3 className="text-lg font-medium">{item.question}</h3>
+                <h3 className={cn("text-lg font-medium")}>{item.question}</h3>
                 <svg
-                  className={`w-5 h-5 transition-transform ${openItem === item.id ? "rotate-180" : ""}`}
+                  className={cn(
+                    "w-5 h-5",
+                    "transition-transform",
+                    openItem === item.id && "rotate-180"
+                  )}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -89,8 +109,17 @@ export default function FAQ() {
                 </svg>
               </button>
               {openItem === item.id && (
-                <div className="p-5 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-                  <p className="text-gray-600 dark:text-gray-400">{item.answer}</p>
+                <div
+                  className={cn(
+                    "p-5",
+                    "border-t",
+                    "border-gray-200 dark:border-gray-700",
+                    "bg-white dark:bg-gray-800"
+                  )}
+                >
+                  <p className={cn("text-gray-600 dark:text-gray-400")}>
+                    {item.answer}
+                  </p>
                 </div>
               )}
             </div>

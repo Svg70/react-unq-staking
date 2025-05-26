@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useWallet } from "@/context/wallet-context"
+import { cn } from "../lib/utils"
 
 interface StakingStats {
   totalStaked: string
@@ -21,11 +22,10 @@ export default function StakingAnalytics() {
 
   useEffect(() => {
     if (connected && stakedBalance) {
-      // Extract the numeric value from the staked balance string
-      const match = stakedBalance.match(/[\d.]+/)
+      const match = stakedBalance.match(/\d+(?:\.\d+)?/)
       if (match) {
         const stakedAmount = Number.parseFloat(match[0])
-        const estimatedRewards = ((stakedAmount * 0.18) / 12).toFixed(2) // Monthly rewards at 18% APY
+        const estimatedRewards = ((stakedAmount * 0.18) / 12).toFixed(2)
 
         setStats({
           totalStaked: stakedBalance,
@@ -42,29 +42,29 @@ export default function StakingAnalytics() {
   }
 
   return (
-    <section className="py-12 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4">
-        <h2 className="text-2xl font-bold mb-8 text-center">Your Staking Analytics</h2>
+    <section className={cn("py-12 bg-gray-50 dark:bg-gray-900")}>
+      <div className={cn("container mx-auto px-4")}>
+        <h2 className={cn("text-2xl font-bold mb-8 text-center")}>Your Staking Analytics</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-medium text-gray-500 dark:text-gray-400 mb-2">Total Staked</h3>
-            <p className="text-2xl font-bold">{stats.totalStaked}</p>
+        <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6")}>
+          <div className={cn("bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md")}>
+            <h3 className={cn("text-lg font-medium text-gray-500 dark:text-gray-400 mb-2")}>Total Staked</h3>
+            <p className={cn("text-2xl font-bold")}>{stats.totalStaked}</p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-medium text-gray-500 dark:text-gray-400 mb-2">Current APY</h3>
-            <p className="text-2xl font-bold text-green-500">{stats.apy}</p>
+          <div className={cn("bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md")}>
+            <h3 className={cn("text-lg font-medium text-gray-500 dark:text-gray-400 mb-2")}>Current APY</h3>
+            <p className={cn("text-2xl font-bold text-green-500")}>{stats.apy}</p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-medium text-gray-500 dark:text-gray-400 mb-2">Est. Monthly Rewards</h3>
-            <p className="text-2xl font-bold">{stats.estimatedRewards}</p>
+          <div className={cn("bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md")}>
+            <h3 className={cn("text-lg font-medium text-gray-500 dark:text-gray-400 mb-2")}>Est. Monthly Rewards</h3>
+            <p className={cn("text-2xl font-bold")}>{stats.estimatedRewards}</p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-medium text-gray-500 dark:text-gray-400 mb-2">Staking Period</h3>
-            <p className="text-2xl font-bold">{stats.stakingPeriod}</p>
+          <div className={cn("bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md")}>
+            <h3 className={cn("text-lg font-medium text-gray-500 dark:text-gray-400 mb-2")}>Staking Period</h3>
+            <p className={cn("text-2xl font-bold")}>{stats.stakingPeriod}</p>
           </div>
         </div>
       </div>

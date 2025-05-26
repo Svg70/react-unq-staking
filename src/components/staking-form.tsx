@@ -7,6 +7,7 @@ import TokenSelector from "@/components/token-selector"
 import WalletInfo from "@/components/wallet-info"
 import CustomTooltip from "@/components/custom-tooltip"
 import { toNano } from "@/lib/toNano"
+import { cn } from "../lib/utils"
 
 const ESTIMATE_FEE = 0.15
 const MIN_STAKE_AMOUNT = 100;
@@ -148,33 +149,35 @@ export default function StakingForm({
   }
 
   return (
-    <div className="flex flex-col space-y-6">
-      {/* Token Selection */}
+    <div className={cn("flex flex-col space-y-6")}>
       <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Token</label>
+        <label className={cn("block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2")}>Token</label>
         <TokenSelector selectedToken={tokenSymbol} onSelectToken={setTokenSymbol} />
       </div>
 
-      {/* Connect Wallet or Wallet Info */}
       {connected ? (
         <WalletInfo activeTab="stake" />
       ) : (
-        <div className="flex justify-center mt-4">
+        <div className={cn("flex justify-center mt-4")}>
           <button
             onClick={onConnectWallet}
-            className="w-full px-6 py-3 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 transition-colors"
+            className={cn(
+              "w-full px-6 py-3 font-medium rounded-md transition-colors",
+              "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+            )}
           >
             Connect Wallet
           </button>
         </div>
       )}
 
-      {/* Staking Form (only shown when connected) */}
       {connected && (
         <>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Amount</label>
-            <div className="relative">
+            <label className={cn("block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2")}>
+              Amount
+            </label>
+            <div className={cn("relative")}>
               <input
                 type="text"
                 value={amount}
@@ -182,68 +185,69 @@ export default function StakingForm({
                   setAmount(e.target.value)
                   setIsMaxAmount(e.target.value === getMaxAmount())
                 }}
-                className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 ${
+                placeholder={`Enter amount to stake (min ${MIN_STAKE_AMOUNT} ${tokenSymbol})`}
+                className={cn(
+                  "w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2",
                   !amount || isValidAmount
                     ? "border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-100"
                     : "border-red-500 focus:ring-red-500 focus:border-red-500 bg-red-50 dark:bg-red-900/20 dark:border-red-500"
-                }`}
-                placeholder={`Enter amount to stake (min 100 ${tokenSymbol})`}
+                )}
                 disabled={isLoading || isStaking}
               />
               <button
                 type="button"
                 onClick={handleMaxAmount}
-                className={`absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 text-sm ${
+                className={cn(
+                  "absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 text-sm rounded hover:bg-blue-50 dark:hover:bg-gray-600",
                   isMaxAmount
                     ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
                     : "bg-white text-blue-500 dark:bg-gray-700 dark:text-blue-300"
-                } rounded hover:bg-blue-50 dark:hover:bg-gray-600`}
+                )}
                 disabled={isLoading || isStaking}
               >
                 Max
               </button>
             </div>
-            {validationMessage && <p className="text-sm text-red-500 dark:text-red-400 mt-1">{validationMessage}</p>}
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-              You can deposit any amount from a minimum of 100 tokens up to 10 times
-            </p>
+            {validationMessage && (
+              <p className={cn("text-sm text-red-500 dark:text-red-400 mt-1")}>{validationMessage}</p>
+            )}
+            <p className={cn("text-sm text-gray-500 dark:text-gray-400 mt-1")}>You can deposit any amount from a minimum of 100 tokens up to 10 times</p>
           </div>
 
-          {/* Staking Information */}
-          <div className="space-y-2 mt-4">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center">
-                <span className="text-gray-700 dark:text-gray-300">Annual percentage yield</span>
+          <div className={cn("space-y-2 mt-4")}>  
+            <div className={cn("flex justify-between items-center")}>
+              <div className={cn("flex items-center")}>
+                <span className={cn("text-gray-700 dark:text-gray-300")}>Annual percentage yield</span>
                 <CustomTooltip text="The annual rate of return on investment" useQtipIcon={true} />
               </div>
-              <span className="font-medium dark:text-gray-200">18%</span>
+              <span className={cn("font-medium dark:text-gray-200")}>18%</span>
             </div>
 
-            <div className="flex justify-between items-center">
-              <span className="text-gray-700 dark:text-gray-300">Transaction cost</span>
-              <span className="font-medium dark:text-gray-200">≈0.1 {tokenSymbol}</span>
+            <div className={cn("flex justify-between items-center")}>
+              <span className={cn("text-gray-700 dark:text-gray-300")}>Transaction cost</span>
+              <span className={cn("font-medium dark:text-gray-200")}>≈0.1 {tokenSymbol}</span>
             </div>
 
-            <div className="flex justify-between items-center">
-              <div className="flex items-center">
-                <span className="text-gray-700 dark:text-gray-300">Stakes left</span>
+            <div className={cn("flex justify-between items-center")}>
+              <div className={cn("flex items-center")}>
+                <span className={cn("text-gray-700 dark:text-gray-300")}>Stakes left</span>
                 <CustomTooltip text="You can create up to 10 stakes from one wallet" useQtipIcon={true} />
               </div>
-              <span className="font-medium dark:text-gray-200">{stakesLeft}</span>
+              <span className={cn("font-medium dark:text-gray-200")}>{stakesLeft}</span>
             </div>
           </div>
 
-          {/* Stake Button */}
           <button
             onClick={handleStake}
             disabled={isStaking || isLoading || !isValidAmount}
-            className={`w-full px-6 py-4 font-medium rounded-md ${
+            className={cn(
+              "w-full px-6 py-4 font-medium rounded-md transition-colors",
               isStaking || isLoading || !isValidAmount
                 ? "bg-gray-300 text-gray-500 dark:bg-gray-700 dark:text-gray-400 cursor-not-allowed"
                 : isMaxAmount
                   ? "bg-green-500 text-white hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
                   : "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
-            } transition-colors`}
+            )}
           >
             {isStaking ? "Staking..." : isMaxAmount ? "Stake All" : "Stake"}
           </button>

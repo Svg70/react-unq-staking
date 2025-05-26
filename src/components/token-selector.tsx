@@ -1,5 +1,7 @@
 "use client"
 
+import { cn } from "../lib/utils"
+
 interface TokenSelectorProps {
   selectedToken: string
   onSelectToken: (token: string) => void
@@ -7,8 +9,8 @@ interface TokenSelectorProps {
 
 export default function TokenSelector({ selectedToken, onSelectToken }: TokenSelectorProps) {
   return (
-    <div className="flex space-x-2">
-      <div className="flex items-center">
+    <div className={cn("flex space-x-2")}>
+      <div className={cn("flex items-center")}>
         <input
           type="radio"
           id="token-unq"
@@ -16,17 +18,22 @@ export default function TokenSelector({ selectedToken, onSelectToken }: TokenSel
           value="UNQ"
           checked={selectedToken === "UNQ"}
           onChange={() => onSelectToken("UNQ")}
-          className="hidden"
+          className={cn("hidden")}
         />
         <label
           htmlFor="token-unq"
-          className={`flex items-center px-4 py-3 rounded-md text-sm font-medium cursor-pointer border ${
+          className={cn(
+            "flex items-center px-4 py-3 rounded-md text-sm font-medium cursor-pointer border",
             selectedToken === "UNQ"
               ? "bg-white text-gray-800 border-blue-500"
               : "bg-white text-gray-700 border-gray-300"
-          }`}
+          )}
         >
-          <svg className="w-5 h-5 mr-2 text-blue-500" viewBox="0 0 25 24" fill="none">
+          <svg
+            className={cn("w-5 h-5 mr-2 text-blue-500")}
+            viewBox="0 0 25 24"
+            fill="none"
+          >
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -38,7 +45,7 @@ export default function TokenSelector({ selectedToken, onSelectToken }: TokenSel
         </label>
       </div>
 
-      <div className="flex items-center">
+      <div className={cn("flex items-center")}>
         <input
           type="radio"
           id="token-quartz"
@@ -46,16 +53,23 @@ export default function TokenSelector({ selectedToken, onSelectToken }: TokenSel
           value="QTZ"
           checked={selectedToken === "QTZ"}
           onChange={() => onSelectToken("QTZ")}
-          className="hidden"
+          className={cn("hidden")}
         />
         <label
           htmlFor="token-quartz"
-          className={`flex items-center px-4 py-3 rounded-md text-sm font-medium cursor-pointer border ${
-            selectedToken === "QTZ" ? "bg-white text-gray-800 border-red-500" : "bg-white text-gray-700 border-gray-300"
-          }`}
+          className={cn(
+            "flex items-center px-4 py-3 rounded-md text-sm font-medium cursor-pointer border",
+            selectedToken === "QTZ"
+              ? "bg-white text-gray-800 border-red-500"
+              : "bg-white text-gray-700 border-gray-300"
+          )}
         >
-          <svg className="w-5 h-5 mr-2 text-red-500" viewBox="0 0 24 24" fill="none">
-            <path
+          <svg
+            className={cn("w-5 h-5 mr-2 text-red-500")}
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+                        <path
               fillRule="evenodd"
               clipRule="evenodd"
               d="M13.1293 20.1251C13.0725 20.063 13.002 20.0149 12.9235 19.9847C12.8449 19.9544 12.7604 19.9427 12.6766 19.9505C12.4639 19.9505 12.2457 19.9778 12.0275 19.9778C10.337 19.9823 8.68847 19.451 7.31879 18.46C5.94912 17.4691 4.92874 16.0695 4.40423 14.4624C3.87972 12.8553 3.87805 11.1233 4.39947 9.51511C4.9209 7.90697 5.93858 6.50547 7.30635 5.51189C8.67412 4.51831 10.3216 3.98379 12.0121 3.98509C13.7027 3.9864 15.3494 4.52347 16.7156 5.51916C18.0818 6.51485 19.0973 7.91792 19.6163 9.52687C20.1352 11.1358 20.1309 12.8678 19.6039 14.4741C19.5551 14.6005 19.5551 14.7405 19.6039 14.8669L21.4148 18.7614C21.4349 18.8046 21.466 18.8418 21.5049 18.8693C21.5439 18.8967 21.5893 18.9135 21.6368 18.9179C21.6842 18.9223 21.732 18.9142 21.7754 18.8944C21.8187 18.8746 21.8561 18.8438 21.8839 18.8051C23.4936 16.4671 24.2224 13.6341 23.9408 10.8096C23.6592 7.98505 22.3855 5.35177 20.3459 3.37758C18.3063 1.4034 15.6329 0.216149 12.8007 0.0267545C9.96844 -0.16264 7.16078 0.658088 4.87649 2.34313C2.59219 4.02816 0.979183 6.4684 0.324024 9.23031C-0.331136 11.9922 0.0139791 14.8969 1.29805 17.4284C2.58213 19.96 4.72202 21.9543 7.33755 23.0572C9.95308 24.1601 12.8749 24.3001 15.5839 23.4523C15.6272 23.4385 15.6664 23.414 15.6979 23.3811C15.7293 23.3482 15.7521 23.308 15.764 23.264C15.7759 23.2201 15.7767 23.1739 15.7662 23.1296C15.7557 23.0853 15.7343 23.0444 15.7039 23.0105L13.1293 20.1251Z"

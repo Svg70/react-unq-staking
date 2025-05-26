@@ -1,4 +1,3 @@
-import "./index.css";                // ваш глобальный CSS
 import { ThemeProvider } from "@/components/theme-provider";
 import StakingPageClient from "@/components/StakingPageClient";
 import { WalletProvider } from "@/context/wallet-context";

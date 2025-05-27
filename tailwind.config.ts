@@ -1,10 +1,10 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  prefix: 'react_unq_staking_app-',
+  prefix: 'st-',
   safelist: [
     {
-      pattern: /^react_unq_staking_app-/,
+      pattern: /^st-/,
     },
   ],
   important: true,

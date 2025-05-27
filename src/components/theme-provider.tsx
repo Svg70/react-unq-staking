@@ -1,31 +1,29 @@
 "use client"
 
-import { useEffect, ReactNode } from 'react'
-import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import type { ThemeProviderProps } from 'next-themes'
+import { ReactNode, useEffect } from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
 
-export function ThemeProvider({ children, ...props }: ThemeProviderProps & { children: ReactNode }) {
+export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const html = document.documentElement
-    const root = document.getElementById('root')
 
     const sync = () => {
-      if (!root) return
-      html.classList.contains('darkmode')
-        ? root.classList.add('dark')
-        : root.classList.remove('dark')
+      console.log('SWITCH_THEMES_WORKS', html.classList)
+      if (html.classList.contains("darkmode")) {
+        html.classList.add("dark")
+      } else {
+        html.classList.remove("dark")
+      }
     }
 
     sync()
-
     const mo = new MutationObserver(sync)
-    mo.observe(html, { attributes: true, attributeFilter: ['class'] })
-
+    mo.observe(html, { attributes: true, attributeFilter: ["class"] })
     return () => mo.disconnect()
   }, [])
 
   return (
-    <NextThemesProvider {...props}>
+    <NextThemesProvider attribute="class" defaultTheme="system">
       {children}
     </NextThemesProvider>
   )

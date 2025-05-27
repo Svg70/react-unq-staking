@@ -1,6 +1,7 @@
 "use client"
 
 import { useWallet } from "@/context/wallet-context"
+import { cn } from "../lib/utils"
 
 interface BalanceInfoProps {
   activeTab?: "stake" | "unstake"
@@ -64,40 +65,40 @@ export default function BalanceInfo({ activeTab = "stake" }: BalanceInfoProps) {
       : `0 ${tokenSymbol}`
 
   return (
-    <div className="react_unq_staking_app-space-y-2">
-      <div className="react_unq_staking_app-flex react_unq_staking_app-justify-between">
-        <span className="react_unq_staking_app-text-gray-700 dark:react_unq_staking_app-text-gray-300">Total balance:</span>
-        <span className="react_unq_staking_app-font-medium">{total}</span>
+    <div className={cn("space-y-2")}>
+      <div className={cn("flex", "justify-between")}>
+        <span className={cn("text-gray-700", "dark:text-gray-300")}>Total balance:</span>
+        <span className={cn("font-medium")}>{total}</span>
       </div>
 
       {activeTab === "stake" ? (
         <>
-          <div className="react_unq_staking_app-flex react_unq_staking_app-justify-between">
-            <span className="react_unq_staking_app-text-gray-700 dark:react_unq_staking_app-text-gray-300">
+          <div className={cn("flex", "justify-between")}>
+            <span className={cn("text-gray-700", "dark:text-gray-300")}>
               Staked volume:
             </span>
-            <span className="react_unq_staking_app-font-medium">
+            <span className={cn("font-medium")}>
               {staked}
             </span>
           </div>
-          <div className="react_unq_staking_app-flex react_unq_staking_app-justify-between">
-            <span className="react_unq_staking_app-text-gray-700 dark:react_unq_staking_app-text-gray-300">Pending unstake:</span>
-            <span className="react_unq_staking_app-font-medium">{pending}</span>
+          <div className={cn("flex", "justify-between")}>
+            <span className={cn("text-gray-700", "dark:text-gray-300")}>Pending unstake:</span>
+            <span className={cn("font-medium")}>{pending}</span>
           </div>
-          <div className="react_unq_staking_app-flex react_unq_staking_app-justify-between">
-            <span className="react_unq_staking_app-text-gray-700 dark:react_unq_staking_app-text-gray-300">Available to stake:</span>
-            <span className="react_unq_staking_app-font-medium">{available}</span>
+          <div className={cn("flex", "justify-between")}>
+            <span className={cn("text-gray-700", "dark:text-gray-300")}>Available to stake:</span>
+            <span className={cn("font-medium")}>{available}</span>
           </div>
         </>
       ) : (
         <>
-          <div className="react_unq_staking_app-flex react_unq_staking_app-justify-between">
-            <span className="react_unq_staking_app-text-gray-600">Pending unstake:</span>
-            <span className="react_unq_staking_app-font-medium">{pending}</span>
+          <div className={cn("flex", "justify-between")}>
+            <span className={cn("text-gray-600", "dark:text-gray-300")}>Pending unstake:</span>
+            <span className={cn("font-medium")}>{pending}</span>
           </div>
-          <div className="react_unq_staking_app-flex react_unq_staking_app-justify-between">
-            <span className="react_unq_staking_app-text-gray-600">Staked volume:</span>
-            <span className="react_unq_staking_app-font-medium">{staked}</span>
+          <div className={cn("flex", "justify-between")}>
+            <span className={cn("text-gray-600", "dark:text-gray-300")}>Staked volume:</span>
+            <span className={cn("font-medium")}>{staked}</span>
           </div>
         </>
       )}

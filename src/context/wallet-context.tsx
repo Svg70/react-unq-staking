@@ -418,7 +418,7 @@ const transformAccount = useCallback(
         }
         setWalletInternal(savedWallet)
       } catch (error) {
-        console.error("Failed to auto-connect wallet:", error)
+        console.error("Failed to st-auto-connect wallet:", error)
         setIsConnecting(false)
         setIsInitializing(false)
       }

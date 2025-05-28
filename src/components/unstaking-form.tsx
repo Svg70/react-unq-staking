@@ -146,99 +146,99 @@ export default function UnstakingForm({
   }
 
   return (
-    <div className={cn("flex flex-col space-y-6")}>
-      <div>
-        <label className={cn("block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2")}>Token</label>
-        <TokenSelector selectedToken={tokenSymbol} onSelectToken={setTokenSymbol} />
-      </div>
-
-      {connected ? (
-        <WalletInfo activeTab="unstake" />
-      ) : (
-        <div className={cn("flex justify-center")}>
-          <button
-            onClick={onConnectWallet}
-            className={cn(
-              "w-full px-6 py-3 font-medium rounded-md transition-colors",
-              "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
-            )}
-          >
-            Connect Wallet
-          </button>
+      <div className={cn("st-flex st-flex-col st-space-y-6")}>
+        <div>
+          <label className={cn("st-block st-text-sm st-font-medium st-text-gray-700 dark:st-text-gray-300 st-mb-2")}>Token</label>
+          <TokenSelector selectedToken={tokenSymbol} onSelectToken={setTokenSymbol} />
         </div>
-      )}
 
-      {connected && (
-        <>
-          <div>
-            <label className={cn("block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2")}>
-              Amount
-            </label>
-            <div className={cn("relative")}>
-              <input
-                type="text"
-                value={amount}
-                onChange={(e) => {
-                  setAmount(e.target.value)
-                  setIsMaxAmount(e.target.value === getMaxAmount())
-                }}
-                placeholder={`Enter amount to unstake`}
-                className={cn(
-                  "w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2",
-                  !amount || isValidAmount
-                    ? "border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-100"
-                    : "border-red-500 focus:ring-red-500 focus:border-red-500 bg-red-50 dark:bg-red-900/20 dark:border-red-500"
-                )}
-                disabled={isLoading || isUnstaking}
-              />
+        {connected ? (
+            <WalletInfo activeTab="unstake" />
+        ) : (
+            <div className={cn("st-flex st-justify-center")}>
               <button
-                type="button"
-                onClick={handleMaxAmount}
-                className={cn(
-                  "absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 text-sm rounded hover:bg-blue-50 dark:hover:bg-gray-600",
-                  isMaxAmount
-                    ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
-                    : "bg-white text-blue-500 dark:bg-gray-700 dark:text-blue-300"
-                )}
-                disabled={isLoading || isUnstaking}
+                  onClick={onConnectWallet}
+                  className={cn(
+                      "st-w-full st-px-6 st-py-3 st-font-medium st-rounded-md st-transition-colors",
+                      "st-bg-blue-500 st-text-white st-hover:bg-blue-600 dark:st-bg-blue-600 dark:st-hover:bg-blue-700"
+                  )}
               >
-                Max
+                Connect Wallet
               </button>
             </div>
-            {amount && !isValidAmount && (
-              <p className={cn("text-sm text-red-500 dark:text-red-400 mt-1")}>{validationMessage}</p>
-            )}
-          </div>
+        )}
 
-          <div className={cn("flex justify-between items-center")}>  
-            <span className={cn("text-gray-700 dark:text-gray-300")}>Transaction cost</span>
-            <span className={cn("font-medium dark:text-gray-200")}>≈0.1 {tokenSymbol}</span>
-          </div>
+        {connected && (
+            <>
+              <div>
+                <label className={cn("st-block st-text-sm st-font-medium st-text-gray-700 dark:st-text-gray-300 st-mb-2")}>
+                  Amount
+                </label>
+                <div className={cn("st-relative")}>
+                  <input
+                      type="text"
+                      value={amount}
+                      onChange={(e) => {
+                        setAmount(e.target.value)
+                        setIsMaxAmount(e.target.value === getMaxAmount())
+                      }}
+                      placeholder={`Enter amount to unstake`}
+                      className={cn(
+                          "st-w-full st-px-4 st-py-3 st-border st-rounded-md st-focus:st-outline-none st-focus:st-ring-2",
+                          !amount || isValidAmount
+                              ? "st-border-gray-300 dark:st-border-gray-600 st-focus:st-ring-blue-500 st-focus:st-border-blue-500 dark:st-bg-gray-800 dark:st-text-gray-100"
+                              : "st-border-red-500 st-focus:st-ring-red-500 st-focus:st-border-red-500 st-bg-red-50 dark:st-bg-red-900/20 dark:st-border-red-500"
+                      )}
+                      disabled={isLoading || isUnstaking}
+                  />
+                  <button
+                      type="button"
+                      onClick={handleMaxAmount}
+                      className={cn(
+                          "st-absolute st-right-2 st-top-1/2 st-transform -st-translate-y-1/2 st-px-3 st-py-1 st-text-sm st-rounded st-hover:st-bg-blue-50 dark:st-hover:st-bg-gray-600",
+                          isMaxAmount
+                              ? "st-bg-blue-100 st-text-blue-700 dark:st-bg-blue-900 dark:st-text-blue-300"
+                              : "st-bg-white st-text-blue-500 dark:st-bg-gray-700 dark:st-text-blue-300"
+                      )}
+                      disabled={isLoading || isUnstaking}
+                  >
+                    Max
+                  </button>
+                </div>
+                {amount && !isValidAmount && (
+                    <p className={cn("st-text-sm st-text-red-500 dark:st-text-red-400 st-mt-1")}>{validationMessage}</p>
+                )}
+              </div>
 
-          {!hasStakedTokens() && (
-            <p className={cn("text-sm text-red-500 dark:text-red-400")}>
-              You do not have funds in the deposit. Please go to the tab "Stake".
-            </p>
-          )}
+              <div className={cn("st-flex st-justify-between st-items-center")}>
+                <span className={cn("st-text-gray-700 dark:st-text-gray-300")}>Transaction cost</span>
+                <span className={cn("st-font-medium dark:st-text-gray-200")}>≈0.1 {tokenSymbol}</span>
+              </div>
 
-          <button
-            onClick={handleUnstake}
-            disabled={isUnstaking || isLoading || !isValidAmount || !amount || !hasStakedTokens()}
-            className={cn(
-              "w-full px-6 py-4 font-medium rounded-md transition-colors",
-              isUnstaking || isLoading || !isValidAmount || !amount || !hasStakedTokens()
-                ? "bg-gray-300 text-gray-500 dark:bg-gray-700 dark:text-gray-400 cursor-not-allowed"
-                : "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
-            )}
-          >
-            {isUnstaking ? "Unstaking..." : isMaxAmount ? "Unstake All" : "Unstake"}
-          </button>
+              {!hasStakedTokens() && (
+                  <p className={cn("st-text-sm st-text-red-500 dark:st-text-red-400")}>
+                    You do not have funds in the deposit. Please go to the tab "Stake".
+                  </p>
+              )}
 
-          <p className={cn("text-sm text-gray-500 dark:text-gray-400 italic")}>
-            You can withdraw the entire amount at any time. The funds will be credited to the account in a week.
-          </p>
-        </>
-      )}
-    </div>
+              <button
+                  onClick={handleUnstake}
+                  disabled={isUnstaking || isLoading || !isValidAmount || !amount || !hasStakedTokens()}
+                  className={cn(
+                      "st-w-full st-px-6 st-py-4 st-font-medium st-rounded-md st-transition-colors",
+                      isUnstaking || isLoading || !isValidAmount || !amount || !hasStakedTokens()
+                          ? "st-bg-gray-300 st-text-gray-500 dark:st-bg-gray-700 dark:st-text-gray-400 st-cursor-not-allowed"
+                          : "st-bg-blue-500 st-text-white st-hover:st-bg-blue-600 dark:st-bg-blue-600 dark:st-hover:st-bg-blue-700"
+                  )}
+              >
+                {isUnstaking ? "Unstaking..." : isMaxAmount ? "Unstake All" : "Unstake"}
+              </button>
+
+              <p className={cn("st-text-sm st-text-gray-500 dark:st-text-gray-400 st-italic")}>
+                You can withdraw the entire amount at any time. The funds will be credited to the account in a week.
+              </p>
+            </>
+        )}
+      </div>
   )
 }

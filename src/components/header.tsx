@@ -38,50 +38,50 @@ export default function Header() {
 
   return (
     <>
-      <header className={cn("h-[0px] sticky top-0 shadow-sm h-[0px]")}>
-        <div className={cn("max-w-7xl mx-auto px-4 sm:px-6 lg:px-8")}>
-          <div className={cn("flex justify-end h-16 items-center")}>
-            <div className={cn("sm:flex items-center space-x-4 ml-auto")}>
+      <header className={cn("st-h-[0px] st-sticky st-top-0 st-shadow-sm st-h-[0px]")}>
+        <div className={cn("st-max-w-7xl st-mx-auto st-px-4 sm:st-px-6 lg:st-px-8")}>
+          <div className={cn("st-flex st-justify-end st-h-16 st-items-center")}>
+            <div className={cn("sm:st-flex st-items-center st-space-x-4 st-ml-auto")}>
               {!connected && (
-                <button
-                  onClick={() => setIsWalletModalOpen(true)}
-                  className={cn(
-                    "px-6 py-3 rounded-md text-lg font-medium border bg-blue-500 text-white border-blue-500"
-                  )}
-                >
-                  Connect Wallet
-                </button>
+                  <button
+                      onClick={() => setIsWalletModalOpen(true)}
+                      className={cn(
+                          "st-px-6 st-py-3 st-rounded-md st-text-lg st-font-medium st-border st-bg-blue-500 st-text-white st-border-blue-500"
+                      )}
+                  >
+                    Connect Wallet
+                  </button>
               )}
 
               {connected && (
-                <div className={cn("relative")} ref={dropdownRef}>
-                  <button
-                    onClick={() => setIsWalletDropdownOpen(v => !v)}
-                    className={cn(
-                      "px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md"
-                    )}
-                  >
-                    {walletAddress?.slice(0, 6)}…{walletAddress?.slice(-6)}
-                  </button>
-                  {isWalletDropdownOpen && (
-                    <div
-                      className={cn(
-                        "absolute right-0 mt-2 w-48 shadow-lg rounded-md z-50",
-                        resolvedTheme === "dark" ? "bg-blue-600" : "bg-blue-500"
-                      )}
+                  <div className={cn("st-relative")} ref={dropdownRef}>
+                    <button
+                        onClick={() => setIsWalletDropdownOpen(v => !v)}
+                        className={cn(
+                            "st-px-3 st-py-2 st-bg-gray-100 dark:st-bg-gray-700 st-text-gray-800 dark:st-text-gray-200 st-rounded-md"
+                        )}
                     >
-                      <button
-                        onClick={() => {
-                          setIsWalletModalOpen(true)
-                          setIsWalletDropdownOpen(false)
-                        }}
-                        className={cn("w-full text-left px-4 py-2 hover:bg-opacity-90 text-white")}
-                      >
-                        Connect New Wallet
-                      </button>
-                    </div>
-                  )}
-                </div>
+                      {walletAddress?.slice(0, 6)}…{walletAddress?.slice(-6)}
+                    </button>
+                    {isWalletDropdownOpen && (
+                        <div
+                            className={cn(
+                                "st-absolute st-right-0 st-mt-2 st-w-48 st-shadow-lg st-rounded-md st-z-50",
+                                resolvedTheme === "dark" ? "st-bg-blue-600" : "st-bg-blue-500"
+                            )}
+                        >
+                          <button
+                              onClick={() => {
+                                setIsWalletModalOpen(true)
+                                setIsWalletDropdownOpen(false)
+                              }}
+                              className={cn("st-w-full st-text-left st-px-4 st-py-2 st-hover:bg-opacity-90 st-text-white")}
+                          >
+                            Connect New Wallet
+                          </button>
+                        </div>
+                    )}
+                  </div>
               )}
             </div>
           </div>

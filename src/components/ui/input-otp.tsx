@@ -13,10 +13,10 @@ const InputOTP = React.forwardRef<
   <OTPInput
     ref={ref}
     containerClassName={cn(
-      "flex items-center gap-2 has-[:disabled]:opacity-50",
+      "flex st-items-center st-gap-2 has-[:disabled]:st-opacity-50",
       containerClassName
     )}
-    className={cn("disabled:cursor-not-allowed", className)}
+    className={cn("disabled:st-cursor-not-allowed", className)}
     {...props}
   />
 ))
@@ -26,7 +26,7 @@ const InputOTPGroup = React.forwardRef<
   React.ElementRef<"div">,
   React.ComponentPropsWithoutRef<"div">
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("flex items-center", className)} {...props} />
+  <div ref={ref} className={cn("flex st-items-center", className)} {...props} />
 ))
 InputOTPGroup.displayName = "InputOTPGroup"
 
@@ -41,16 +41,16 @@ const InputOTPSlot = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md",
-        isActive && "z-10 ring-2 ring-ring ring-offset-background",
+        "relative flex st-h-10 st-w-10 st-items-center st-justify-center st-border-y st-border-r st-border-input st-text-sm st-transition-all st-first:rounded-l-md st-first:border-l st-last:rounded-r-md",
+        isActive && "st-z-10 st-ring-2 st-ring-ring st-ring-offset-background",
         className
       )}
       {...props}
     >
       {char}
       {hasFakeCaret && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-4 w-px animate-caret-blink bg-foreground duration-1000" />
+        <div className="st-pointer-events-none absolute st-inset-0 flex st-items-center st-justify-center">
+          <div className="st-h-4 st-w-px animate-caret-blink st-bg-foreground st-duration-1000" />
         </div>
       )}
     </div>

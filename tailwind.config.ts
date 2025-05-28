@@ -2,11 +2,6 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   prefix: 'st-',
-  safelist: [
-    {
-      pattern: /^st-/,
-    },
-  ],
   important: true,
   darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],

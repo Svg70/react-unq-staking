@@ -65,43 +65,39 @@ export default function BalanceInfo({ activeTab = "stake" }: BalanceInfoProps) {
       : `0 ${tokenSymbol}`
 
   return (
-    <div className={cn("space-y-2")}>
-      <div className={cn("flex", "justify-between")}>
-        <span className={cn("text-gray-700", "dark:text-gray-300")}>Total balance:</span>
-        <span className={cn("font-medium")}>{total}</span>
-      </div>
+      <div className={cn("st-space-y-2")}>
+        <div className={cn("st-flex st-justify-between")}>
+          <span className={cn("st-text-gray-700 dark:st-text-gray-300")}>Total balance:</span>
+          <span className={cn("st-font-medium")}>{total}</span>
+        </div>
 
-      {activeTab === "stake" ? (
-        <>
-          <div className={cn("flex", "justify-between")}>
-            <span className={cn("text-gray-700", "dark:text-gray-300")}>
-              Staked volume:
-            </span>
-            <span className={cn("font-medium")}>
-              {staked}
-            </span>
-          </div>
-          <div className={cn("flex", "justify-between")}>
-            <span className={cn("text-gray-700", "dark:text-gray-300")}>Pending unstake:</span>
-            <span className={cn("font-medium")}>{pending}</span>
-          </div>
-          <div className={cn("flex", "justify-between")}>
-            <span className={cn("text-gray-700", "dark:text-gray-300")}>Available to stake:</span>
-            <span className={cn("font-medium")}>{available}</span>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className={cn("flex", "justify-between")}>
-            <span className={cn("text-gray-600", "dark:text-gray-300")}>Pending unstake:</span>
-            <span className={cn("font-medium")}>{pending}</span>
-          </div>
-          <div className={cn("flex", "justify-between")}>
-            <span className={cn("text-gray-600", "dark:text-gray-300")}>Staked volume:</span>
-            <span className={cn("font-medium")}>{staked}</span>
-          </div>
-        </>
-      )}
-    </div>
+        {activeTab === "stake" ? (
+            <>
+              <div className={cn("st-flex st-justify-between")}>
+                <span className={cn("st-text-gray-700 dark:st-text-gray-300")}>Staked volume:</span>
+                <span className={cn("st-font-medium")}>{staked}</span>
+              </div>
+              <div className={cn("st-flex st-justify-between")}>
+                <span className={cn("st-text-gray-700 dark:st-text-gray-300")}>Pending unstake:</span>
+                <span className={cn("st-font-medium")}>{pending}</span>
+              </div>
+              <div className={cn("st-flex st-justify-between")}>
+                <span className={cn("st-text-gray-700 dark:st-text-gray-300")}>Available to stake:</span>
+                <span className={cn("st-font-medium")}>{available}</span>
+              </div>
+            </>
+        ) : (
+            <>
+              <div className={cn("st-flex st-justify-between")}>
+                <span className={cn("st-text-gray-600 dark:st-text-gray-300")}>Pending unstake:</span>
+                <span className={cn("st-font-medium")}>{pending}</span>
+              </div>
+              <div className={cn("st-flex st-justify-between")}>
+                <span className={cn("st-text-gray-600 dark:st-text-gray-300")}>Staked volume:</span>
+                <span className={cn("st-font-medium")}>{staked}</span>
+              </div>
+            </>
+        )}
+      </div>
   )
 }

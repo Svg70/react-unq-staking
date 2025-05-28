@@ -14,7 +14,7 @@ import { RefreshCw } from "lucide-react"
 import { cn } from "../lib/utils"
 
 export default function StakingHistory() {
-  const { connected, walletAddress, registerRefreshCallback } = useWallet()
+  const { connected, walletAddress, registerRefreshCallback, tokenSymbol } = useWallet()
   const [activeTab, setActiveTab] = useState("staking")
   const [stakingTransactions, setStakingTransactions] = useState<StakingHistoryItem[]>([])
   const [transferTransactions, setTransferTransactions] = useState<any[]>([])
@@ -30,7 +30,7 @@ export default function StakingHistory() {
 
     setStakingLoading(true)
     try {
-      const transactions = await fetchStakingHistory(walletAddress)
+      const transactions = await fetchStakingHistory(walletAddress, tokenSymbol)
       setStakingTransactions(transactions)
     } catch (error) {
       console.error("Failed to load staking history:", error)
@@ -44,7 +44,7 @@ export default function StakingHistory() {
 
     setTransfersLoading(true)
     try {
-      const transactions = await fetchTransferHistory(walletAddress)
+      const transactions = await fetchTransferHistory(walletAddress, tokenSymbol)
       setTransferTransactions(transactions)
     } catch (error) {
       console.error("Failed to load transfer history:", error)
@@ -84,7 +84,7 @@ export default function StakingHistory() {
     return () => {
       isMounted = false
     }
-  }, [connected, walletAddress])
+  }, [connected, walletAddress, tokenSymbol])
 
   useEffect(() => {
     const unregister = registerRefreshCallback(refreshTransactions)

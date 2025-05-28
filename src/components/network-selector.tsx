@@ -26,51 +26,51 @@ export default function NetworkSelector() {
     networks.find((n) => n.id === currentNetwork)?.name || "Select Network"
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          className={cn("flex items-center gap-2")}
-        >
-          <div
-            className={cn(
-              "w-3 h-3 rounded-full",
-              currentNetwork === "unique" ? "bg-blue-500" : "bg-purple-500"
-            )}
-          />
-          <span>{currentNetworkName}</span>
-          <ChevronDown className={cn("h-4 w-4 opacity-50")} />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        align="end"
-        className={cn("w-[200px]")}
-      >
-        {networks.map((network) => (
-          <DropdownMenuItem
-            key={network.id}
-            onClick={() => handleNetworkChange(network.id)}
-            className={cn(
-              "flex items-center justify-between cursor-pointer"
-            )}
+      <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+        <DropdownMenuTrigger asChild>
+          <Button
+              variant="outline"
+              className={cn("st-flex st-items-center st-gap-2")}
           >
-            <div className={cn("flex items-center gap-2")}>  
-              <div
+            <div
                 className={cn(
-                  "w-3 h-3 rounded-full",
-                  network.id === "unique"
-                    ? "bg-blue-500"
-                    : "bg-purple-500"
+                    "st-w-3 st-h-3 st-rounded-full",
+                    currentNetwork === "unique" ? "st-bg-blue-500" : "st-bg-purple-500"
                 )}
-              />
-              <span>{network.name}</span>
-            </div>
-            {currentNetwork === network.id && (
-              <Check className={cn("h-4 w-4")} />
-            )}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+            />
+            <span>{currentNetworkName}</span>
+            <ChevronDown className={cn("st-h-4 st-w-4 st-opacity-50")} />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+            align="end"
+            className={cn("st-w-[200px]")}
+        >
+          {networks.map((network) => (
+              <DropdownMenuItem
+                  key={network.id}
+                  onClick={() => handleNetworkChange(network.id)}
+                  className={cn(
+                      "st-flex st-items-center st-justify-between st-cursor-pointer"
+                  )}
+              >
+                <div className={cn("st-flex st-items-center st-gap-2")}>
+                  <div
+                      className={cn(
+                          "st-w-3 st-h-3 st-rounded-full",
+                          network.id === "unique"
+                              ? "st-bg-blue-500"
+                              : "st-bg-purple-500"
+                      )}
+                  />
+                  <span>{network.name}</span>
+                </div>
+                {currentNetwork === network.id && (
+                    <Check className={cn("st-h-4 st-w-4")} />
+                )}
+              </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
   )
 }

@@ -157,12 +157,12 @@ const CarouselContent = React.forwardRef<
   const { carouselRef, orientation } = useCarousel()
 
   return (
-    <div ref={carouselRef} className="overflow-hidden">
+    <div ref={carouselRef} className="st-overflow-hidden">
       <div
         ref={ref}
         className={cn(
           "flex",
-          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+            orientation === "horizontal" ? "-st-ml-4" : "-st-mt-4 st-flex-col",
           className
         )}
         {...props}
@@ -184,9 +184,9 @@ const CarouselItem = React.forwardRef<
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pl-4" : "pt-4",
-        className
+          "st-min-w-0 st-shrink-0 st-grow-0 st-basis-full",
+          orientation === "horizontal" ? "st-pl-4" : "st-pt-4",
+          className
       )}
       {...props}
     />
@@ -206,17 +206,17 @@ const CarouselPrevious = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute  h-8 w-8 rounded-full",
-        orientation === "horizontal"
-          ? "-left-12 top-1/2 -translate-y-1/2"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
-        className
+          "st-absolute st-h-8 st-w-8 st-rounded-full",
+          orientation === "horizontal"
+              ? "-st-left-12 st-top-1/2 -st-translate-y-1/2"
+              : "-st-top-12 st-left-1/2 -st-translate-x-1/2 st-rotate-90",
+          className
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft className="h-4 w-4" />
+      <ArrowLeft className="st-h-4 st-w-4" />
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -235,17 +235,17 @@ const CarouselNext = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute h-8 w-8 rounded-full",
-        orientation === "horizontal"
-          ? "-right-12 top-1/2 -translate-y-1/2"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
-        className
+          "st-absolute st-h-8 st-w-8 st-rounded-full",
+          orientation === "horizontal"
+              ? "-st-right-12 st-top-1/2 -st-translate-y-1/2"
+              : "-st-bottom-12 st-left-1/2 -st-translate-x-1/2 st-rotate-90",
+          className
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight className="h-4 w-4" />
+      <ArrowRight className="st-h-4 st-w-4" />
       <span className="sr-only">Next slide</span>
     </Button>
   )

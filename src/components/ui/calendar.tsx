@@ -18,44 +18,44 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn("p-3", className)}
+      className={cn("st-p-3", className)}
       classNames={{
-        months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
-        month: "space-y-4",
-        caption: "flex justify-center pt-1 relative items-center",
-        caption_label: "text-sm font-medium",
-        nav: "space-x-1 flex items-center",
-        nav_button: cn(
-          buttonVariants({ variant: "outline" }),
-          "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
-        ),
-        nav_button_previous: "absolute left-1",
-        nav_button_next: "absolute right-1",
-        table: "w-full border-collapse space-y-1",
-        head_row: "flex",
-        head_cell:
-          "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]",
-        row: "flex w-full mt-2",
-        cell: "h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-        day: cn(
-          buttonVariants({ variant: "ghost" }),
-          "h-9 w-9 p-0 font-normal aria-selected:opacity-100"
-        ),
-        day_range_end: "day-range-end",
-        day_selected:
-          "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
-        day_today: "bg-accent text-accent-foreground",
-        day_outside:
-          "day-outside text-muted-foreground aria-selected:bg-accent/50 aria-selected:text-muted-foreground",
-        day_disabled: "text-muted-foreground opacity-50",
-        day_range_middle:
-          "aria-selected:bg-accent aria-selected:text-accent-foreground",
-        day_hidden: "invisible",
-        ...classNames,
+          months: "st-flex st-flex-col sm:st-flex-row st-space-y-4 sm:st-space-x-4 sm:st-space-y-0",
+          month: "st-space-y-4",
+          caption: "st-flex st-justify-center st-pt-1 st-relative st-items-center",
+          caption_label: "st-text-sm st-font-medium",
+          nav: "st-space-x-1 st-flex st-items-center",
+          nav_button: cn(
+              buttonVariants({ variant: "outline" }),
+              "st-h-7 st-w-7 st-bg-transparent st-p-0 st-opacity-50 st-hover:st-opacity-100"
+          ),
+          nav_button_previous: "st-absolute st-left-1",
+          nav_button_next: "st-absolute st-right-1",
+          table: "st-w-full st-border-collapse st-space-y-1",
+          head_row: "st-flex",
+          head_cell:
+              "st-text-muted-foreground st-rounded-md st-w-9 st-font-normal st-text-[0.8rem]",
+          row: "st-flex st-w-full st-mt-2",
+          cell: "st-h-9 st-w-9 st-text-center st-text-sm st-p-0 st-relative [&:has([aria-selected].day-range-end)]:st-rounded-r-md [&:has([aria-selected].day-outside)]:st-bg-accent/50 [&:has([aria-selected])]:st-bg-accent first:[&:has([aria-selected])]:st-rounded-l-md last:[&:has([aria-selected])]:st-rounded-r-md st-focus-within:st-relative st-focus-within:st-z-20",
+          day: cn(
+              buttonVariants({ variant: "ghost" }),
+              "st-h-9 st-w-9 st-p-0 st-font-normal aria-selected:st-opacity-100"
+          ),
+          day_range_end: "day-range-end",
+          day_selected:
+              "st-bg-primary st-text-primary-foreground st-hover:bg-primary st-hover:text-primary-foreground st-focus:bg-primary st-focus:text-primary-foreground",
+          day_today: "st-bg-accent st-text-accent-foreground",
+          day_outside:
+              "day-outside st-text-muted-foreground aria-selected:st-bg-accent/50 aria-selected:st-text-muted-foreground",
+          day_disabled: "st-text-muted-foreground st-opacity-50",
+          day_range_middle:
+              "aria-selected:st-bg-accent aria-selected:st-text-accent-foreground",
+          day_hidden: "st-invisible",
+          ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        IconLeft: ({ ...props }) => <ChevronLeft className="st-h-4 st-w-4" />,
+        IconRight: ({ ...props }) => <ChevronRight className="st-h-4 st-w-4" />,
       }}
       {...props}
     />

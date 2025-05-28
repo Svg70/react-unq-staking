@@ -96,281 +96,281 @@ export default function StakingHistory() {
   }
 
   return (
-    <section className={cn("py-12", "bg-white", "dark:bg-gray-800")}>
-      <div className={cn("container", "mx-auto", "px-4")}>
-        <div className={cn("flex", "justify-between", "items-center", "mb-6")}>
-          <h2 className={cn("text-2xl", "font-bold")}>Your Transaction History</h2>
-          <button
-            onClick={refreshTransactions}
-            disabled={isRefreshing || stakingLoading || transfersLoading}
-            className={cn(
-              "flex", "items-center", "gap-2", "px-4", "py-2", "bg-blue-500", "text-white", "rounded-md",
-              "hover:bg-blue-600", "disabled:opacity-50", "disabled:cursor-not-allowed", "transition-colors"
-            )}
-          >
-            <RefreshCw className={cn("w-4", "h-4", isRefreshing ? "animate-spin" : "")} />
-            Refresh
-          </button>
-        </div>
-
-        <div className={cn("bg-white", "dark:bg-gray-700", "rounded-lg", "shadow-md", "overflow-hidden")}>
-          <div className={cn("border-b", "border-gray-200", "dark:border-gray-600")}>
-            <div className={cn("flex")}>
-              <button
+      <section className={cn("st-py-12", "st-bg-white", "dark:st-bg-gray-800")}>
+        <div className={cn("st-container", "st-mx-auto", "st-px-4")}>
+          <div className={cn("st-flex", "st-justify-between", "st-items-center", "st-mb-6")}>
+            <h2 className={cn("st-text-2xl", "st-font-bold")}>Your Transaction History</h2>
+            <button
+                onClick={refreshTransactions}
+                disabled={isRefreshing || stakingLoading || transfersLoading}
                 className={cn(
-                  "px-6", "py-3", "text-sm", "font-medium",
-                  activeTab === "staking"
-                    ? ["border-b-2", "border-blue-500", "text-blue-500"]
-                    : ["text-gray-500", "hover:text-gray-700", "dark:text-gray-400", "dark:hover:text-gray-200"]
+                    "st-flex", "st-items-center", "st-gap-2", "st-px-4", "st-py-2", "st-bg-blue-500", "st-text-white", "st-rounded-md",
+                    "st-hover:bg-blue-600", "st-disabled:opacity-50", "st-disabled:cursor-not-allowed", "st-transition-colors"
                 )}
-                onClick={() => setActiveTab("staking")}
-              >
-                Staking History ({stake.length})
-              </button>
-              <button
-                className={cn(
-                  "px-6", "py-3", "text-sm", "font-medium",
-                  activeTab === "unstaking"
-                    ? ["border-b-2", "border-blue-500", "text-blue-500"]
-                    : ["text-gray-500", "hover:text-gray-700", "dark:text-gray-400", "dark:hover:text-gray-200"]
-                )}
-                onClick={() => setActiveTab("unstaking")}
-              >
-                Unstaking History ({unstake.length})
-              </button>
-              <button
-                className={cn(
-                  "px-6", "py-3", "text-sm", "font-medium",
-                  activeTab === "transfers"
-                    ? ["border-b-2", "border-blue-500", "text-blue-500"]
-                    : ["text-gray-500", "hover:text-gray-700", "dark:text-gray-400", "dark:hover:text-gray-200"]
-                )}
-                onClick={() => setActiveTab("transfers")}
-              >
-                Transfers ({transferTransactions.length})
-              </button>
-            </div>
+            >
+              <RefreshCw className={cn("st-w-4", "st-h-4", isRefreshing ? "st-animate-spin" : "")} />
+              Refresh
+            </button>
           </div>
 
-          <div className={cn("p-6")}>
-            {activeTab === "staking" ? (
-              stakingLoading ? (
-                <div className={cn("flex", "justify-center", "py-8")}>
-                  <div className={cn("animate-spin", "rounded-full", "h-12", "w-12", "border-b-2", "border-blue-500")}></div>
-                </div>
-              ) : stake.length === 0 ? (
-                <div className={cn("text-center", "py-8", "bg-gray-50", "dark:bg-gray-700", "rounded-lg")}>
-                  <p className={cn("text-gray-500", "dark:text-gray-400")}>No staking history found</p>
-                </div>
-              ) : (
-                <div className={cn("overflow-x-auto")}>
-                  <table className={cn("min-w-full", "bg-white", "dark:bg-gray-800", "rounded-lg", "overflow-hidden")}>
-                    <thead className={cn("bg-gray-50", "dark:bg-gray-700")}>
-                      <tr>
-                        <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                          Block
-                        </th>
-                        <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                          Hash
-                        </th>
-                        <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                          Time
-                        </th>
-                        <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                          Status
-                        </th>
-                        <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                          Method
-                        </th>
-                        <th className={cn("px-6", "py-3", "text-right", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                          Amount
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className={cn("divide-y", "divide-gray-200", "dark:divide-gray-700")}>
-                      {stake.map((tx, index) => (
-                        <tr key={index} className={cn("hover:bg-gray-50", "dark:hover:bg-gray-700")}>
-                          <td className={cn("px-6", "py-4", "whitespace-nowrap", "text-sm", "font-medium", "text-gray-900", "dark:text-gray-100")}>
-                            {tx.blockNumber}
-                          </td>
-                          <td className={cn("px-6", "py-4", "whitespace-nowrap", "text-sm", "font-mono")}>
-                            <a
-                              href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={cn("text-blue-600", "hover:text-blue-800", "hover:underline")}
-                            >
-                              {formatHash(tx.hash)}
-                            </a>
-                          </td>
-                          <td className={cn("px-6", "py-4", "whitespace-nowrap", "text-sm", "text-gray-600", "dark:text-gray-400")}>
-                            {formatDate(tx.createdAt)}
-                          </td>
-                          <td className={cn("px-6", "py-4")}>
-                            <span className={cn("inline-flex", "items-center", "rounded-full", "bg-green-50", "px-2", "py-1", "text-xs", "font-medium", "text-green-700", "dark:bg-green-800", "dark:text-green-100")}>
-                              Success
-                            </span>
-                          </td>
-                          <td className={cn("px-6", "py-4")}>
-                            <span className={cn("text-sm", "text-gray-700", "dark:text-gray-300")}>
-                              {tx.section} ({tx.method})
-                            </span>
-                          </td>
-                          <td className={cn("px-6", "py-4", "text-right", "font-mono", "text-sm", "text-gray-900", "dark:text-gray-100")}>
-                            {formatAmount(tx.amount)}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )
-            ) : activeTab === "unstaking" ? (
-              stakingLoading ? (
-                <div className={cn("flex", "justify-center", "py-8")}>
-                  <div className={cn("animate-spin", "rounded-full", "h-12", "w-12", "border-b-2", "border-blue-500")}></div>
-                </div>
-              ) : unstake.length === 0 ? (
-                <div className={cn("text-center", "py-8", "bg-gray-50", "dark:bg-gray-700", "rounded-lg")}>
-                  <p className={cn("text-gray-500", "dark:text-gray-400")}>No unstaking history found</p>
-                </div>
-              ) : (
-                <div className={cn("overflow-x-auto")}>
-                  <table className={cn("min-w-full", "bg-white", "dark:bg-gray-800", "rounded-lg", "overflow-hidden")}>
-                    <thead className={cn("bg-gray-50", "dark:bg-gray-700")}>
-                      <tr>
-                        <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                          Block
-                        </th>
-                        <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                          Hash
-                        </th>
-                        <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                          Time
-                        </th>
-                        <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                          Status
-                        </th>
-                        <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                          Method
-                        </th>
-                        <th className={cn("px-6", "py-3", "text-right", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                          Amount
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className={cn("divide-y", "divide-gray-200", "dark:divide-gray-700")}>
-                      {unstake.map((tx, index) => (
-                        <tr key={index} className={cn("hover:bg-gray-50", "dark:hover:bg-gray-700")}>
-                          <td className={cn("px-6", "py-4", "whitespace-nowrap", "text-sm", "font-medium", "text-gray-900", "dark:text-gray-100")}>
-                            {tx.blockNumber}
-                          </td>
-                          <td className={cn("px-6", "py-4", "whitespace-nowrap", "text-sm", "font-mono")}>
-                            <a
-                              href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={cn("text-blue-600", "hover:text-blue-800", "hover:underline")}
-                            >
-                              {formatHash(tx.hash)}
-                            </a>
-                          </td>
-                          <td className={cn("px-6", "py-4", "whitespace-nowrap", "text-sm", "text-gray-600", "dark:text-gray-400")}>
-                            {formatDate(tx.createdAt)}
-                          </td>
-                          <td className={cn("px-6", "py-4")}>
-                            <span className={cn("inline-flex", "items-center", "rounded-full", "bg-green-50", "px-2", "py-1", "text-xs", "font-medium", "text-green-700", "dark:bg-green-800", "dark:text-green-100")}>
-                              Success
-                            </span>
-                          </td>
-                          <td className={cn("px-6", "py-4")}>
-                            <span className={cn("text-sm", "text-gray-700", "dark:text-gray-300")}>
-                              {tx.section} ({tx.method})
-                            </span>
-                          </td>
-                          <td className={cn("px-6", "py-4", "text-right", "font-mono", "text-sm", "text-gray-900", "dark:text-gray-100")}>
-                            {formatAmount(tx.amount)}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )
-            ) : transfersLoading ? (
-              <div className={cn("flex", "justify-center", "py-8")}>
-                <div className={cn("animate-spin", "rounded-full", "h-12", "w-12", "border-b-2", "border-blue-500")}></div>
+          <div className={cn("st-bg-white", "dark:st-bg-gray-700", "st-rounded-lg", "st-shadow-md", "st-overflow-hidden")}>
+            <div className={cn("st-border-b", "st-border-gray-200", "dark:st-border-gray-600")}>
+              <div className={cn("st-flex")}>
+                <button
+                    className={cn(
+                        "st-px-6", "st-py-3", "st-text-sm", "st-font-medium",
+                        activeTab === "staking"
+                            ? ["st-border-b-2", "st-border-blue-500", "st-text-blue-500"]
+                            : ["st-text-gray-500", "st-hover:text-gray-700", "dark:st-text-gray-400", "dark:st-hover:text-gray-200"]
+                    )}
+                    onClick={() => setActiveTab("staking")}
+                >
+                  Staking History ({stake.length})
+                </button>
+                <button
+                    className={cn(
+                        "st-px-6", "st-py-3", "st-text-sm", "st-font-medium",
+                        activeTab === "unstaking"
+                            ? ["st-border-b-2", "st-border-blue-500", "st-text-blue-500"]
+                            : ["st-text-gray-500", "st-hover:text-gray-700", "dark:st-text-gray-400", "dark:st-hover:text-gray-200"]
+                    )}
+                    onClick={() => setActiveTab("unstaking")}
+                >
+                  Unstaking History ({unstake.length})
+                </button>
+                <button
+                    className={cn(
+                        "st-px-6", "st-py-3", "st-text-sm", "st-font-medium",
+                        activeTab === "transfers"
+                            ? ["st-border-b-2", "st-border-blue-500", "st-text-blue-500"]
+                            : ["st-text-gray-500", "st-hover:text-gray-700", "dark:st-text-gray-400", "dark:st-hover:text-gray-200"]
+                    )}
+                    onClick={() => setActiveTab("transfers")}
+                >
+                  Transfers ({transferTransactions.length})
+                </button>
               </div>
-            ) : transferTransactions.length === 0 ? (
-              <div className={cn("text-center", "py-8", "bg-gray-50", "dark:bg-gray-700", "rounded-lg")}>
-                <p className={cn("text-gray-500", "dark:text-gray-400")}>No transfer transactions found</p>
-              </div>
-            ) : (
-              <div className={cn("overflow-x-auto")}>
-                <table className={cn("min-w-full", "bg-white", "dark:bg-gray-800", "rounded-lg", "overflow-hidden")}>
-                  <thead className={cn("bg-gray-50", "dark:bg-gray-700")}>
-                    <tr>
-                      <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                        Block
-                      </th>
-                      <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                        Hash
-                      </th>
-                      <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                        Time
-                      </th>
-                      <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                        Status
-                      </th>
-                      <th className={cn("px-6", "py-3", "text-left", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                        Method
-                      </th>
-                      <th className={cn("px-6", "py-3", "text-right", "text-xs", "font-medium", "text-gray-500", "dark:text-gray-300", "uppercase", "tracking-wider")}>
-                        Amount
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className={cn("divide-y", "divide-gray-200", "dark:divide-gray-700")}>
-                    {transferTransactions.map((tx, index) => (
-                      <tr key={index} className={cn("hover:bg-gray-50", "dark:hover:bg-gray-700")}>
-                        <td className={cn("px-6", "py-4", "whitespace-nowrap", "text-sm", "font-medium", "text-gray-900", "dark:text-gray-100")}>
-                          {tx.blockNumber}
-                        </td>
-                        <td className={cn("px-6", "py-4", "whitespace-nowrap", "text-sm", "font-mono")}>
-                          <a
-                            href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={cn("text-blue-600", "hover:text-blue-800", "hover:underline")}
-                          >
-                            {formatHash(tx.hash)}
-                          </a>
-                        </td>
-                        <td className={cn("px-6", "py-4", "whitespace-nowrap", "text-sm", "text-gray-600", "dark:text-gray-400")}>
-                          {formatDate(tx.createdAt)}
-                        </td>
-                        <td className={cn("px-6", "py-4")}>
-                          <span className={cn("inline-flex", "items-center", "rounded-full", "bg-green-50", "px-2", "py-1", "text-xs", "font-medium", "text-green-700", "dark:bg-green-800", "dark:text-green-100")}>
+            </div>
+
+            <div className={cn("st-p-6")}>
+              {activeTab === "staking" ? (
+                  stakingLoading ? (
+                      <div className={cn("st-flex", "st-justify-center", "st-py-8")}>
+                        <div className={cn("st-animate-spin", "st-rounded-full", "st-h-12", "st-w-12", "st-border-b-2", "st-border-blue-500")}></div>
+                      </div>
+                  ) : stake.length === 0 ? (
+                      <div className={cn("st-text-center", "st-py-8", "st-bg-gray-50", "dark:st-bg-gray-700", "st-rounded-lg")}>
+                        <p className={cn("st-text-gray-500", "dark:st-text-gray-400")}>No staking history found</p>
+                      </div>
+                  ) : (
+                      <div className={cn("st-overflow-x-auto")}>
+                        <table className={cn("st-min-w-full", "st-bg-white", "dark:st-bg-gray-800", "st-rounded-lg", "st-overflow-hidden")}>
+                          <thead className={cn("st-bg-gray-50", "dark:st-bg-gray-700")}>
+                          <tr>
+                            <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                              Block
+                            </th>
+                            <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                              Hash
+                            </th>
+                            <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                              Time
+                            </th>
+                            <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                              Status
+                            </th>
+                            <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                              Method
+                            </th>
+                            <th className={cn("st-px-6", "st-py-3", "st-text-right", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                              Amount
+                            </th>
+                          </tr>
+                          </thead>
+                          <tbody className={cn("st-divide-y", "st-divide-gray-200", "dark:st-divide-gray-700")}>
+                          {stake.map((tx, index) => (
+                              <tr key={index} className={cn("st-hover:bg-gray-50", "dark:st-hover:bg-gray-700")}>
+                                <td className={cn("st-px-6", "st-py-4", "st-whitespace-nowrap", "st-text-sm", "st-font-medium", "st-text-gray-900", "dark:st-text-gray-100")}>
+                                  {tx.blockNumber}
+                                </td>
+                                <td className={cn("st-px-6", "st-py-4", "st-whitespace-nowrap", "st-text-sm", "st-font-mono")}>
+                                  <a
+                                      href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className={cn("st-text-blue-600", "st-hover:text-blue-800", "st-hover:underline")}
+                                  >
+                                    {formatHash(tx.hash)}
+                                  </a>
+                                </td>
+                                <td className={cn("st-px-6", "st-py-4", "st-whitespace-nowrap", "st-text-sm", "st-text-gray-600", "dark:st-text-gray-400")}>
+                                  {formatDate(tx.createdAt)}
+                                </td>
+                                <td className={cn("st-px-6", "st-py-4")}>
+                          <span className={cn("st-inline-flex", "st-items-center", "st-rounded-full", "st-bg-green-50", "st-px-2", "st-py-1", "st-text-xs", "st-font-medium", "st-text-green-700", "dark:st-bg-green-800", "dark:st-text-green-100")}>
                             Success
                           </span>
-                        </td>
-                        <td className={cn("px-6", "py-4")}>
-                          <span className={cn("text-sm", "text-gray-700", "dark:text-gray-300")}>
+                                </td>
+                                <td className={cn("st-px-6", "st-py-4")}>
+                          <span className={cn("st-text-sm", "st-text-gray-700", "dark:st-text-gray-300")}>
                             {tx.section} ({tx.method})
                           </span>
-                        </td>
-                        <td className={cn("px-6", "py-4", "text-right", "font-mono", "text-sm", "text-gray-900", "dark:text-gray-100")}>
-                          {formatAmount(tx.amount)}
-                        </td>
+                                </td>
+                                <td className={cn("st-px-6", "st-py-4", "st-text-right", "st-font-mono", "st-text-sm", "st-text-gray-900", "dark:st-text-gray-100")}>
+                                  {formatAmount(tx.amount)}
+                                </td>
+                              </tr>
+                          ))}
+                          </tbody>
+                        </table>
+                      </div>
+                  )
+              ) : activeTab === "unstaking" ? (
+                  stakingLoading ? (
+                      <div className={cn("st-flex", "st-justify-center", "st-py-8")}>
+                        <div className={cn("st-animate-spin", "st-rounded-full", "st-h-12", "st-w-12", "st-border-b-2", "st-border-blue-500")}></div>
+                      </div>
+                  ) : unstake.length === 0 ? (
+                      <div className={cn("st-text-center", "st-py-8", "st-bg-gray-50", "dark:st-bg-gray-700", "st-rounded-lg")}>
+                        <p className={cn("st-text-gray-500", "dark:st-text-gray-400")}>No unstaking history found</p>
+                      </div>
+                  ) : (
+                      <div className={cn("st-overflow-x-auto")}>
+                        <table className={cn("st-min-w-full", "st-bg-white", "dark:st-bg-gray-800", "st-rounded-lg", "st-overflow-hidden")}>
+                          <thead className={cn("st-bg-gray-50", "dark:st-bg-gray-700")}>
+                          <tr>
+                            <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                              Block
+                            </th>
+                            <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                              Hash
+                            </th>
+                            <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                              Time
+                            </th>
+                            <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                              Status
+                            </th>
+                            <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                              Method
+                            </th>
+                            <th className={cn("st-px-6", "st-py-3", "st-text-right", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                              Amount
+                            </th>
+                          </tr>
+                          </thead>
+                          <tbody className={cn("st-divide-y", "st-divide-gray-200", "dark:st-divide-gray-700")}>
+                          {unstake.map((tx, index) => (
+                              <tr key={index} className={cn("st-hover:bg-gray-50", "dark:st-hover:bg-gray-700")}>
+                                <td className={cn("st-px-6", "st-py-4", "st-whitespace-nowrap", "st-text-sm", "st-font-medium", "st-text-gray-900", "dark:st-text-gray-100")}>
+                                  {tx.blockNumber}
+                                </td>
+                                <td className={cn("st-px-6", "st-py-4", "st-whitespace-nowrap", "st-text-sm", "st-font-mono")}>
+                                  <a
+                                      href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className={cn("st-text-blue-600", "st-hover:text-blue-800", "st-hover:underline")}
+                                  >
+                                    {formatHash(tx.hash)}
+                                  </a>
+                                </td>
+                                <td className={cn("st-px-6", "st-py-4", "st-whitespace-nowrap", "st-text-sm", "st-text-gray-600", "dark:st-text-gray-400")}>
+                                  {formatDate(tx.createdAt)}
+                                </td>
+                                <td className={cn("st-px-6", "st-py-4")}>
+                          <span className={cn("st-inline-flex", "st-items-center", "st-rounded-full", "st-bg-green-50", "st-px-2", "st-py-1", "st-text-xs", "st-font-medium", "st-text-green-700", "dark:st-bg-green-800", "dark:st-text-green-100")}>
+                            Success
+                          </span>
+                                </td>
+                                <td className={cn("st-px-6", "st-py-4")}>
+                          <span className={cn("st-text-sm", "st-text-gray-700", "dark:st-text-gray-300")}>
+                            {tx.section} ({tx.method})
+                          </span>
+                                </td>
+                                <td className={cn("st-px-6", "st-py-4", "st-text-right", "st-font-mono", "st-text-sm", "st-text-gray-900", "dark:st-text-gray-100")}>
+                                  {formatAmount(tx.amount)}
+                                </td>
+                              </tr>
+                          ))}
+                          </tbody>
+                        </table>
+                      </div>
+                  )
+              ) : transfersLoading ? (
+                  <div className={cn("st-flex", "st-justify-center", "st-py-8")}>
+                    <div className={cn("st-animate-spin", "st-rounded-full", "st-h-12", "st-w-12", "st-border-b-2", "st-border-blue-500")}></div>
+                  </div>
+              ) : transferTransactions.length === 0 ? (
+                  <div className={cn("st-text-center", "st-py-8", "st-bg-gray-50", "dark:st-bg-gray-700", "st-rounded-lg")}>
+                    <p className={cn("st-text-gray-500", "dark:st-text-gray-400")}>No transfer transactions found</p>
+                  </div>
+              ) : (
+                  <div className={cn("st-overflow-x-auto")}>
+                    <table className={cn("st-min-w-full", "st-bg-white", "dark:st-bg-gray-800", "st-rounded-lg", "st-overflow-hidden")}>
+                      <thead className={cn("st-bg-gray-50", "dark:st-bg-gray-700")}>
+                      <tr>
+                        <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                          Block
+                        </th>
+                        <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                          Hash
+                        </th>
+                        <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                          Time
+                        </th>
+                        <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                          Status
+                        </th>
+                        <th className={cn("st-px-6", "st-py-3", "st-text-left", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                          Method
+                        </th>
+                        <th className={cn("st-px-6", "st-py-3", "st-text-right", "st-text-xs", "st-font-medium", "st-text-gray-500", "dark:st-text-gray-300", "st-uppercase", "st-tracking-wider")}>
+                          Amount
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
+                      </thead>
+                      <tbody className={cn("st-divide-y", "st-divide-gray-200", "dark:st-divide-gray-700")}>
+                      {transferTransactions.map((tx, index) => (
+                          <tr key={index} className={cn("st-hover:bg-gray-50", "dark:st-hover:bg-gray-700")}>
+                            <td className={cn("st-px-6", "st-py-4", "st-whitespace-nowrap", "st-text-sm", "st-font-medium", "st-text-gray-900", "dark:st-text-gray-100")}>
+                              {tx.blockNumber}
+                            </td>
+                            <td className={cn("st-px-6", "st-py-4", "st-whitespace-nowrap", "st-text-sm", "st-font-mono")}>
+                              <a
+                                  href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={cn("st-text-blue-600", "st-hover:text-blue-800", "st-hover:underline")}
+                              >
+                                {formatHash(tx.hash)}
+                              </a>
+                            </td>
+                            <td className={cn("st-px-6", "st-py-4", "st-whitespace-nowrap", "st-text-sm", "st-text-gray-600", "dark:st-text-gray-400")}>
+                              {formatDate(tx.createdAt)}
+                            </td>
+                            <td className={cn("st-px-6", "st-py-4")}>
+                        <span className={cn("st-inline-flex", "st-items-center", "st-rounded-full", "st-bg-green-50", "st-px-2", "st-py-1", "st-text-xs", "st-font-medium", "st-text-green-700", "dark:st-bg-green-800", "dark:st-text-green-100")}>
+                          Success
+                        </span>
+                            </td>
+                            <td className={cn("st-px-6", "st-py-4")}>
+                        <span className={cn("st-text-sm", "st-text-gray-700", "dark:st-text-gray-300")}>
+                          {tx.section} ({tx.method})
+                        </span>
+                            </td>
+                            <td className={cn("st-px-6", "st-py-4", "st-text-right", "st-font-mono", "st-text-sm", "st-text-gray-900", "dark:st-text-gray-100")}>
+                              {formatAmount(tx.amount)}
+                            </td>
+                          </tr>
+                      ))}
+                      </tbody>
+                    </table>
+                  </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
   )
 }

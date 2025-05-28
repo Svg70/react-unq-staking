@@ -28,13 +28,13 @@ export default function StakingPageClient() {
     <>
       <StakingPage />
       {showLoader && (
-        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 max-w-md w-full text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4"></div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+        <div className="st-fixed st-inset-0 st-bg-black/30 st-backdrop-blur-sm st-flex st-items-center st-justify-center st-z-50">
+          <div className="st-bg-white dark:st-bg-gray-800 st-rounded-lg st-shadow-xl st-p-8 st-max-w-md st-w-full st-text-center">
+            <div className="st-animate-spin st-rounded-full st-h-12 st-w-12 st-border-b-2 st-border-orange-500 st-mx-auto st-mb-4"></div>
+            <h3 className="st-text-xl st-font-semibold st-mb-2 st-text-gray-900 dark:st-text-white">
               {isInitializing ? "Initializing Wallet" : "Connecting Wallet"}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="st-text-gray-600 dark:st-text-gray-300">
               {isInitializing
                 ? "Please wait while we initialize your wallet connection..."
                 : "Please wait while we connect to your wallet..."}

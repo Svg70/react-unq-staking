@@ -71,7 +71,7 @@ export default function FAQ() {
           {faqItems.map((item) => (
             <div key={item.id} className="mb-4 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
               <button
-                className="flex justify-between items-center w-full p-5 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
+                className="flex justify-between items-center w-full p-[20px] text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
                 onClick={() => toggleItem(item.id)}
               >
                 <h3 className="text-lg font-medium">{item.question}</h3>
@@ -89,7 +89,7 @@ export default function FAQ() {
                 </svg>
               </button>
               {openItem === item.id && (
-                <div className="p-5 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                <div className="p-[20px] border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
                   <p className="text-gray-600 dark:text-gray-400">{item.answer}</p>
                 </div>
               )}

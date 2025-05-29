@@ -185,7 +185,6 @@ export default function UnstakingForm({
                 disabled={isLoading || isUnstaking}
               />
               <button
-                type="button"
                 onClick={handleMaxAmount}
                 className={`absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 text-sm ${
                   isMaxAmount
@@ -217,7 +216,7 @@ export default function UnstakingForm({
           <button
             onClick={handleUnstake}
             disabled={isUnstaking || isLoading || !isValidAmount || !amount || !hasStakedTokens()}
-            className={`w-full px-6 py-4 font-medium rounded-md ${
+            className={`w-full px-[24px] py-[16px] font-medium rounded-md ${
               isUnstaking || isLoading || !isValidAmount || !amount || !hasStakedTokens()
                 ? "bg-gray-300 text-gray-500 dark:bg-gray-700 dark:text-gray-400 cursor-not-allowed"
                 : "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"

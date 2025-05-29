@@ -191,7 +191,6 @@ export default function StakingForm({
                 disabled={isLoading || isStaking}
               />
               <button
-                type="button"
                 onClick={handleMaxAmount}
                 className={`absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 text-sm ${
                   isMaxAmount
@@ -237,7 +236,7 @@ export default function StakingForm({
           <button
             onClick={handleStake}
             disabled={isStaking || isLoading || !isValidAmount}
-            className={`w-full px-6 py-4 font-medium rounded-md ${
+            className={`w-full px-[24px] py-[16px] font-medium rounded-md ${
               isStaking || isLoading || !isValidAmount
                 ? "bg-gray-300 text-gray-500 dark:bg-gray-700 dark:text-gray-400 cursor-not-allowed"
                 : isMaxAmount

@@ -76,7 +76,6 @@ export default function CustomTooltip({ text, children, position = "top", useQti
     >
       {useQtipIcon ? (
         <button
-          type="button"
           className="ml-1 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-400 focus:outline-none"
         >
           <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">

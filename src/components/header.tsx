@@ -55,7 +55,7 @@ export default function Header() {
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setIsWalletDropdownOpen(v => !v)}
-                    className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md"
+                    className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md mt-[80px]"
                   >
                     {walletAddress?.slice(0, 6)}…{walletAddress?.slice(-6)}
                   </button>
@@ -79,12 +79,12 @@ export default function Header() {
                 </div>
               )}
 
-              <button
+              {/* <button
                 onClick={toggleTheme}
                 className="p-2 rounded-md text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 {mounted && (resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />)}
-              </button>
+              </button> */}
             </div>
 
           </div>

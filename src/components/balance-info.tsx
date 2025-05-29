@@ -91,11 +91,11 @@ const formatNumber = (raw: string, decimals: number = 18): string => {
       ) : (
         <>
           <div className="flex justify-between">
-            <span className="text-gray-600">Pending unstake:</span>
+            <span className="text-gray-600 dark:text-gray-300">Pending unstake:</span>
             <span className="font-medium">{pending}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600">Staked volume:</span>
+            <span className="text-gray-600 dark:text-gray-300">Staked volume:</span>
             <span className="font-medium">{staked}</span>
           </div>
         </>

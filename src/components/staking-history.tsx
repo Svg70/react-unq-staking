@@ -188,10 +188,10 @@ export default function StakingHistory() {
                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                       {stake.map((tx, index) => (
                         <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                          <td className="px-[24px] py-[16px] whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                             {tx.blockNumber}
                           </td>
-                          <td className="px-[24px] py-[16px] whitespace-nowrap text-sm font-mono">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-mono">
                             <a
                               href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
                               target="_blank"
@@ -201,20 +201,20 @@ export default function StakingHistory() {
                               {formatHash(tx.hash)}
                             </a>
                           </td>
-                          <td className="px-[24px] py-[16px] whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
                             {formatDate(tx.createdAt)}
                           </td>
-                          <td className="px-[24px] py-[16px]">
+                          <td className="px-6 py-4">
                             <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-800 dark:text-green-100">
                               Success
                             </span>
                           </td>
-                          <td className="px-[24px] py-[16px]">
+                          <td className="px-6 py-4">
                             <span className="text-sm text-gray-700 dark:text-gray-300">
                               {tx.section} ({tx.method})
                             </span>
                           </td>
-                          <td className="px-[24px] py-[16px] text-right font-mono text-sm text-gray-900 dark:text-gray-100">
+                          <td className="px-6 py-4 text-right font-mono text-sm text-gray-900 dark:text-gray-100">
                             {formatAmount(tx.amount)}
                           </td>
                         </tr>
@@ -260,10 +260,10 @@ export default function StakingHistory() {
                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                       {unstake.map((tx, index) => (
                         <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                          <td className="px-[24px] py-[16px] whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                             {tx.blockNumber}
                           </td>
-                          <td className="px-[24px] py-[16px] whitespace-nowrap text-sm font-mono">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-mono">
                             <a
                               href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
                               target="_blank"
@@ -273,20 +273,20 @@ export default function StakingHistory() {
                               {formatHash(tx.hash)}
                             </a>
                           </td>
-                          <td className="px-[24px] py-[16px] whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
                             {formatDate(tx.createdAt)}
                           </td>
-                          <td className="px-[24px] py-[16px]">
+                          <td className="px-6 py-4">
                             <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-800 dark:text-green-100">
                               Success
                             </span>
                           </td>
-                          <td className="px-[24px] py-[16px]">
+                          <td className="px-6 py-4">
                             <span className="text-sm text-gray-700 dark:text-gray-300">
                               {tx.section} ({tx.method})
                             </span>
                           </td>
-                          <td className="px-[24px] py-[16px] text-right font-mono text-sm text-gray-900 dark:text-gray-100">
+                          <td className="px-6 py-4 text-right font-mono text-sm text-gray-900 dark:text-gray-100">
                             {formatAmount(tx.amount)}
                           </td>
                         </tr>
@@ -331,10 +331,10 @@ export default function StakingHistory() {
                   <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                     {transferTransactions.map((tx, index) => (
                       <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <td className="px-[24px] py-[16px] whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                           {tx.blockNumber}
                         </td>
-                        <td className="px-[24px] py-[16px] whitespace-nowrap text-sm font-mono">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-mono">
                           <a
                             href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
                             target="_blank"
@@ -344,20 +344,20 @@ export default function StakingHistory() {
                             {formatHash(tx.hash)}
                           </a>
                         </td>
-                        <td className="px-[24px] py-[16px] whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
                           {formatDate(tx.createdAt)}
                         </td>
-                        <td className="px-[24px] py-[16px]">
+                        <td className="px-6 py-4">
                           <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-800 dark:text-green-100">
                             Success
                           </span>
                         </td>
-                        <td className="px-[24px] py-[16px]">
+                        <td className="px-6 py-4">
                           <span className="text-sm text-gray-700 dark:text-gray-300">
                             {tx.section} ({tx.method})
                           </span>
                         </td>
-                        <td className="px-[24px] py-[16px] text-right font-mono text-sm text-gray-900 dark:text-gray-100">
+                        <td className="px-6 py-4 text-right font-mono text-sm text-gray-900 dark:text-gray-100">
                           {formatAmount(tx.amount)}
                         </td>
                       </tr>

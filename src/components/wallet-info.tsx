@@ -30,8 +30,8 @@ export default function WalletInfo({ activeTab = "stake" }: WalletInfoProps) {
       )}
       <div>
         <div className="flex items-center mb-2">
-          <div className="flex items-center text-white">
-            <span className="font-medium">Current account</span>
+          <div className="flex items-center">
+            <span className="font-medium text-gray-600 dark:text-gray-300">Current account</span>
           </div>
         </div>
 

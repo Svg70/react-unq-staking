@@ -6,7 +6,12 @@ const config: Config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
   theme: {
+    fontFamily: {
+      raleway: ['Raleway', 'Arial', 'Helvetica','sans-serif'],
+      sans: ['Inter', 'sans-serif'],
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -16,6 +21,7 @@ const config: Config = {
       colors: {
         gray: {
           100: '#f0f0f3',
+          300: '#9CAAB7',
           700: '#152c68',
           800: '#0a1635',
           900: '#0a1635'
@@ -62,7 +68,7 @@ const config: Config = {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
-        border: "hsl(var(--border))",
+        // border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         chart: {

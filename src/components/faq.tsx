@@ -64,7 +64,7 @@ export default function FAQ() {
     <section className="py-16 bg-gray-100 dark:bg-gray-800" id="FAQ">
       <div className="container mx-auto px-4">
         <header className="mb-12 text-center">
-          <h2 className="text-3xl font-bold">FAQ</h2>
+          <h2 className="font-raleway text-3xl font-extrabold">FAQ</h2>
         </header>
 
         <div className="max-w-3xl mx-auto">
@@ -74,7 +74,7 @@ export default function FAQ() {
                 className="flex justify-between items-center w-full p-[20px] text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
                 onClick={() => toggleItem(item.id)}
               >
-                <h3 className="text-lg font-medium">{item.question}</h3>
+                <h3 className="font-raleway text-2xl font-bold">{item.question}</h3>
                 <svg
                   className={`w-5 h-5 transition-transform ${openItem === item.id ? "rotate-180" : ""}`}
                   xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@ export default function FAQ() {
               </button>
               {openItem === item.id && (
                 <div className="p-[20px] border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-                  <p className="text-gray-600 dark:text-gray-400">{item.answer}</p>
+                  <p className="text-base font-normal text-gray-600 dark:text-gray-400">{item.answer}</p>
                 </div>
               )}
             </div>

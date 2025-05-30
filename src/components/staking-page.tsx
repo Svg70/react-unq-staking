@@ -49,22 +49,22 @@ function StakingTabs() {
             <div className="mb-8">
               {/* Tabs */}
               <div className="flex justify-center mb-6">
-                <div className="grid grid-cols-2 w-full max-w-md gap-4">
+                <div className="flex justify-center w-full max-w-md gap-4">
                   <button
-                    className={`px-6 py-3 rounded-md text-lg font-medium border ${
+                    className={`w-[160px] h-[58px] py-3 rounded-[12px] text-lg font-semibold border ${
                       activeTab === "stake"
-                        ? "bg-blue-500 text-white border-blue-500"
-                        : "bg-white text-gray-700 border-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
+                        ? "text-blue-500 border-blue-500"
+                        : "bg-white text-gray-300 border-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
                     }`}
                     onClick={() => setActiveTab("stake")}
                   >
                     Stake
                   </button>
                   <button
-                    className={`px-6 py-3 rounded-md text-lg font-medium border ${
+                    className={`w-[160px] h-[58px]  py-3 rounded-[12px] text-lg font-semibold border ${
                       activeTab === "unstake"
-                        ? "bg-blue-500 text-white border-blue-500"
-                        : "bg-white text-gray-700 border-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
+                        ? "text-blue-500 border-blue-500"
+                        : "bg-white text-gray-300 border-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
                     }`}
                     onClick={() => setActiveTab("unstake")}
                   >
@@ -152,12 +152,12 @@ export default function StakingPage() {
       <main className="flex-grow bg-gray-100 dark:bg-gray-900">
         <section className="pb-16 pt-[110px]">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="font-raleway text-[52px] md:text-5xl font-black mb-4">
               <span className="text-gray-900 dark:text-white">UNIQUE STAKING HUB</span>
               <br />
               <span className="text-blue-500">IS AVAILABLE</span>
             </h1>
-            <p className="text-xl">Earn 18% APY staking your UNQ and QTZ tokens</p>
+            <p className="text-lg font-normal">Earn 18% APY staking your UNQ and QTZ tokens</p>
           </div>
         </section>
 

@@ -40,7 +40,7 @@ export default function WalletInfo({ activeTab = "stake" }: WalletInfoProps) {
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-md bg-white"
           >
-            <div className="flex items-center">
+            <div className="flex items-center overflow-hidden">
               <span className="text-sm text-gray-500">{walletAddress}</span>
             </div>
             <svg

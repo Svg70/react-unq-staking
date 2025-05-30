@@ -45,9 +45,9 @@ export default function Header() {
               {!connected && (
                 <button
                   onClick={() => setIsWalletModalOpen(true)}
-                  className="px-6 py-3 rounded-md text-lg font-medium border bg-blue-500 text-white border-blue-500"
+                  className="px-6 py-[4px] mt-[80px] rounded-[14px] text-lg font-medium border bg-blue-500 text-white border-blue-500"
                 >
-                  Connect Wallet
+                  connect wallet
                 </button>
               )}
 

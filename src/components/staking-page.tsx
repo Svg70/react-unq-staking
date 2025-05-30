@@ -43,7 +43,7 @@ function StakingTabs() {
   return (
     <>
       {/* Staking Section */}
-      <section className="py-16 bg-white dark:bg-gray-800">
+      <section className="py-16 bg-gray-100 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto bg-white dark:bg-gray-700 rounded-lg shadow-xl ring-1 ring-black/5 p-8">
             <div className="mb-8">
@@ -149,9 +149,8 @@ export default function StakingPage() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="bg-gray-100 dark:bg-gray-900 py-16">
+      <main className="flex-grow bg-gray-100 dark:bg-gray-900">
+        <section className="pb-16 pt-[110px]">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               <span className="text-gray-900 dark:text-white">UNIQUE STAKING HUB</span>

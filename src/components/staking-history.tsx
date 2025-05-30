@@ -13,7 +13,8 @@ import {
 import { RefreshCw } from "lucide-react"
 
 export default function StakingHistory() {
-  const { connected, walletAddress, registerRefreshCallback } = useWallet()
+
+  const { connected, walletAddress, registerRefreshCallback, tokenSymbol } = useWallet()
   const [activeTab, setActiveTab] = useState("staking")
   const [stakingTransactions, setStakingTransactions] = useState<StakingHistoryItem[]>([])
   const [transferTransactions, setTransferTransactions] = useState<any[]>([])
@@ -29,7 +30,7 @@ export default function StakingHistory() {
 
     setStakingLoading(true)
     try {
-      const transactions = await fetchStakingHistory(walletAddress)
+      const transactions = await fetchStakingHistory(walletAddress, tokenSymbol)
       setStakingTransactions(transactions)
     } catch (error) {
       console.error("Failed to load staking history:", error)
@@ -43,7 +44,7 @@ export default function StakingHistory() {
 
     setTransfersLoading(true)
     try {
-      const transactions = await fetchTransferHistory(walletAddress)
+      const transactions = await fetchTransferHistory(walletAddress, tokenSymbol)
       setTransferTransactions(transactions)
     } catch (error) {
       console.error("Failed to load transfer history:", error)
@@ -52,7 +53,6 @@ export default function StakingHistory() {
     }
   }
 
-  // Function to refresh all transaction data
   const refreshTransactions = async () => {
     if (isRefreshing || !connected || !walletAddress) return
 
@@ -84,20 +84,17 @@ export default function StakingHistory() {
     return () => {
       isMounted = false
     }
-  }, [connected, walletAddress])
+  }, [connected, walletAddress, tokenSymbol])
 
-  // Register refresh callback
   useEffect(() => {
-    // Register the callback for refreshing transaction history
     const unregister = registerRefreshCallback(refreshTransactions)
-
-    // Clean up on unmount
     return unregister
   }, [registerRefreshCallback])
 
   if (!connected) {
     return null
   }
+
 
   return (
     <section className="py-12 bg-white dark:bg-gray-800">
@@ -109,7 +106,7 @@ export default function StakingHistory() {
             disabled={isRefreshing || stakingLoading || transfersLoading}
             className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
-            <RefreshCw className={`w-4 h-4 ${isRefreshing ? "animate-spin" : ""}`} />
+            <RefreshCw fill="none" className={`w-4 h-4 ${isRefreshing ? "animate-spin" : ""}`} />
             Refresh
           </button>
         </div>

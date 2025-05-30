@@ -41,7 +41,7 @@ export default function SuccessModal({ transactionHash, onClose, isUnstaking }: 
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+              <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
             </svg>
           </div>
           <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Success!</h3>
@@ -74,6 +74,7 @@ export default function SuccessModal({ transactionHash, onClose, isUnstaking }: 
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
+                    fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"

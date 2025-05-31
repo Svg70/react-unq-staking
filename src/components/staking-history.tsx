@@ -106,7 +106,7 @@ export default function StakingHistory() {
             disabled={isRefreshing || stakingLoading || transfersLoading}
             className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
-            <RefreshCw fill="none" className={`w-4 h-4 ${isRefreshing ? "animate-spin" : ""}`} />
+            <RefreshCw className={`w-4 h-4 !fill-none ${isRefreshing ? "animate-spin" : ""}`} />
             Refresh
           </button>
         </div>

@@ -63,7 +63,7 @@ export default function SuccessModal({ transactionHash, onClose, isUnstaking }: 
                 href={subscanUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 font-medium flex items-center justify-center"
+                className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 font-medium flex items-center justify-center fill-none"
               >
                 <span>View on Subscan</span>
                 <svg

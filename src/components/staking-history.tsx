@@ -95,6 +95,12 @@ export default function StakingHistory() {
     return null
   }
 
+  const getExplorerUrl = (hash: string, tokenSymbol: string) => {
+    if (tokenSymbol === "QTZ") {
+      return `https://quartz.subscan.io/extrinsic/${hash}?tab=event`;
+    }
+    return `https://unique.subscan.io/extrinsic/${hash}?tab=event`;
+  };
 
   return (
     <section className="py-12 bg-white dark:bg-gray-800">
@@ -190,7 +196,7 @@ export default function StakingHistory() {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-mono">
                             <a
-                              href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
+                              href={getExplorerUrl(tx.hash, tokenSymbol)}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-blue-600 hover:text-blue-800 hover:underline"
@@ -262,7 +268,7 @@ export default function StakingHistory() {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-mono">
                             <a
-                              href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
+                              href={getExplorerUrl(tx.hash, tokenSymbol)}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-blue-600 hover:text-blue-800 hover:underline"
@@ -333,7 +339,7 @@ export default function StakingHistory() {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-mono">
                           <a
-                            href={`https://unique.subscan.io/extrinsic/${tx.hash}?tab=event`}
+                            href={getExplorerUrl(tx.hash, tokenSymbol)}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-blue-600 hover:text-blue-800 hover:underline"

@@ -19,6 +19,7 @@
     "@talismn/connect-wallets": "^1.2.8",
     "@unique-nft/sdk": "0.7.7",
     "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "lucide-react": "^0.511.0",
     "next-themes": "^0.4.6",
     "path": "^0.12.7",

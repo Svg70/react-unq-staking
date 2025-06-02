@@ -3,6 +3,9 @@
 import { useState } from "react"
 import { useWallet } from "@/context/wallet-context"
 import BalanceInfo from "@/components/balance-info"
+import CopyStroke from "@/assets/icons/CopyStroke.tsx";
+import {useCopy} from "@/hooks/use-copy.ts";
+import {NotificationModal} from "@/components/modals/notification-modal.tsx";
 
 interface WalletInfoProps {
   activeTab?: "stake" | "unstake"
@@ -10,6 +13,7 @@ interface WalletInfoProps {
 
 export default function WalletInfo({ activeTab = "stake" }: WalletInfoProps) {
   const { walletAddress, accounts, selectAccount, isConnecting } = useWallet()
+  const { handleCopy, showNotification } = useCopy()
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const handleSelectAccount = async (address: string) => {
@@ -41,6 +45,18 @@ export default function WalletInfo({ activeTab = "stake" }: WalletInfoProps) {
             className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-md bg-white"
           >
             <div className="flex items-center overflow-hidden">
+              <div
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    if (walletAddress) {
+                      handleCopy(walletAddress)
+                    }
+                  }}
+                  className="mr-2"
+              >
+                <CopyStroke className="w-6 h-6 text-gray-500 hover:text-gray-700" />
+              </div>
+              {showNotification && <NotificationModal />}
               <span className="text-sm text-gray-500">{walletAddress}</span>
             </div>
             <svg

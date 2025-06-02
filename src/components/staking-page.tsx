@@ -152,12 +152,11 @@ export default function StakingPage() {
       <main className="flex-grow bg-gray-100 dark:bg-gray-900">
         <section className="pb-16 pt-[110px]">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="font-raleway text-[52px] md:text-5xl font-black mb-4">
-              <span className="text-gray-900 dark:text-white">UNIQUE STAKING HUB</span>
-              <br />
-              <span className="text-blue-500">IS AVAILABLE</span>
+            <h1 className="font-raleway text-[52px] md:text-5xl font-black leading-none md:leading-none">
+              <div className="text-gray-900 dark:text-white">UNIQUE STAKING HUB</div>
+              <div className="text-blue-500">IS AVAILABLE</div>
             </h1>
-            <p className="text-lg font-normal">Earn 18% APY staking your UNQ and QTZ tokens</p>
+            <p className="text-xl font-normal leading-[28px]">Earn 18% APY staking your UNQ and QTZ tokens</p>
           </div>
         </section>
 

@@ -118,3 +118,13 @@ export function formatAmount(amount: string): string {
     return "0"
   }
 }
+
+export function formatNumber  (value: string | number): string {
+  const num = typeof value === 'string' ? parseFloat(value) : value;
+  if (isNaN(num)) return value.toString();
+
+  return new Intl.NumberFormat('en-US', {
+    maximumFractionDigits: 4,
+    minimumFractionDigits: 0
+  }).format(num);
+};

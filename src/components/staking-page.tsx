@@ -53,7 +53,7 @@ function StakingTabs() {
                   <button
                     className={`w-[160px] h-[58px] py-3 rounded-[12px] text-lg font-semibold border ${
                       activeTab === "stake"
-                        ? "text-blue-500 border-blue-500"
+                        ? "text-blue-500 border-blue-500 border-[2px]"
                         : "bg-white text-gray-300 border-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
                     }`}
                     onClick={() => setActiveTab("stake")}
@@ -63,7 +63,7 @@ function StakingTabs() {
                   <button
                     className={`w-[160px] h-[58px]  py-3 rounded-[12px] text-lg font-semibold border ${
                       activeTab === "unstake"
-                        ? "text-blue-500 border-blue-500"
+                        ? "text-blue-500 border-blue-500 border-[2px]"
                         : "bg-white text-gray-300 border-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
                     }`}
                     onClick={() => setActiveTab("unstake")}

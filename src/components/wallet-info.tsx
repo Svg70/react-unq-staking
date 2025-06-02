@@ -31,7 +31,7 @@ export default function WalletInfo({ activeTab = "stake" }: WalletInfoProps) {
       <div>
         <div className="flex items-center mb-2">
           <div className="flex items-center">
-            <span className="font-medium text-gray-600 dark:text-gray-300">Current account</span>
+            <span className="text-lg font-normal text-gray-600 dark:text-gray-300">Current account</span>
           </div>
         </div>
 
@@ -40,8 +40,8 @@ export default function WalletInfo({ activeTab = "stake" }: WalletInfoProps) {
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-md bg-white"
           >
-            <div className="flex items-center">
-              <span className="text-gray-500">{walletAddress}</span>
+            <div className="flex items-center overflow-hidden">
+              <span className="text-sm text-gray-500">{walletAddress}</span>
             </div>
             <svg
               className={`w-5 h-5 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}

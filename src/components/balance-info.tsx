@@ -68,33 +68,33 @@ const formatNumber = (raw: string, decimals: number = 18): string => {
   return (
     <div className="space-y-2">
       {/* Всегда показываем Total */}
-      <div className="flex justify-between">
+      <div className="flex justify-between text-base font-normal">
         <span className="text-gray-700 dark:text-gray-300">Total balance:</span>
-        <span className="font-medium">{total}</span>
+        <span>{total}</span>
       </div>
 
       {activeTab === "stake" ? (
         <>
-          <div className="flex justify-between">
+          <div className="flex justify-between text-base font-normal">
             <span className="text-gray-700 dark:text-gray-300">Staked volume:</span>
-            <span className="font-medium">{staked}</span>
+            <span>{staked}</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between text-base font-normal">
             <span className="text-gray-700 dark:text-gray-300">Pending unstake:</span>
-            <span className="font-medium">{pending}</span>
+            <span>{pending}</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between text-base font-normal">
             <span className="text-gray-700 dark:text-gray-300">Available to stake:</span>
-            <span className="font-medium">{available}</span>
+            <span>{available}</span>
           </div>
         </>
       ) : (
         <>
-          <div className="flex justify-between">
+          <div className="flex justify-between text-base font-normal">
             <span className="text-gray-600 dark:text-gray-300">Pending unstake:</span>
             <span className="font-medium">{pending}</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between text-base font-normal">
             <span className="text-gray-600 dark:text-gray-300">Staked volume:</span>
             <span className="font-medium">{staked}</span>
           </div>

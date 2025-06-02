@@ -20,7 +20,7 @@ export default function TokenSelector({ selectedToken, onSelectToken }: TokenSel
         />
         <label
           htmlFor="token-unq"
-          className={`flex items-center px-4 py-3 rounded-md text-sm font-medium cursor-pointer border ${
+          className={`flex items-center px-4 py-3 rounded-md text-lg font-normal cursor-pointer border ${
             selectedToken === "UNQ"
               ? "bg-white text-gray-800 border-blue-500"
               : "bg-white text-gray-700 border-gray-300"
@@ -50,7 +50,7 @@ export default function TokenSelector({ selectedToken, onSelectToken }: TokenSel
         />
         <label
           htmlFor="token-quartz"
-          className={`flex items-center px-4 py-3 rounded-md text-sm font-medium cursor-pointer border ${
+          className={`flex items-center px-4 py-3 rounded-md text-lg font-normal cursor-pointer border ${
             selectedToken === "QTZ" ? "bg-white text-gray-800 border-red-500" : "bg-white text-gray-700 border-gray-300"
           }`}
         >

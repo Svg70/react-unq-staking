@@ -151,7 +151,7 @@ export default function StakingForm({
     <div className="flex flex-col space-y-6">
       {/* Token Selection */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Token</label>
+        <label className="block text-lg font-normal text-gray-700 dark:text-gray-300 mb-2">Token</label>
         <TokenSelector selectedToken={tokenSymbol} onSelectToken={setTokenSymbol} />
       </div>
 
@@ -173,7 +173,7 @@ export default function StakingForm({
       {connected && (
         <>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Amount</label>
+            <label className="block text-lg font-normal text-gray-700 dark:text-gray-300 mb-2">Amount</label>
             <div className="relative">
               <input
                 type="text"
@@ -202,7 +202,7 @@ export default function StakingForm({
                 Max
               </button>
             </div>
-            {validationMessage && <p className="text-sm text-red-500 dark:text-red-400 mt-1">{validationMessage}</p>}
+            {validationMessage && <p className="text-lg font-medium text-red-500 dark:text-red-400 mt-1">{validationMessage}</p>}
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               You can deposit any amount from a minimum of 100 tokens up to 10 times
             </p>
@@ -218,9 +218,9 @@ export default function StakingForm({
               <span className="font-medium dark:text-gray-200">18%</span>
             </div>
 
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center text-lg font-normal">
               <span className="text-gray-700 dark:text-gray-300">Transaction cost</span>
-              <span className="font-medium dark:text-gray-200">≈0.1 {tokenSymbol}</span>
+              <span className=" dark:text-gray-200">≈0.1 {tokenSymbol}</span>
             </div>
 
             <div className="flex justify-between items-center">
@@ -236,7 +236,7 @@ export default function StakingForm({
           <button
             onClick={handleStake}
             disabled={isStaking || isLoading || !isValidAmount}
-            className={`w-full px-[24px] py-[16px] font-medium rounded-md ${
+            className={`w-full px-[24px] py-[16px] text-base font-semibold rounded-md ${
               isStaking || isLoading || !isValidAmount
                 ? "bg-gray-300 text-gray-500 dark:bg-gray-700 dark:text-gray-400 cursor-not-allowed"
                 : isMaxAmount

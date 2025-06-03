@@ -13,6 +13,7 @@ export default function App() {
       storageKey="stakefin-theme"
     >
       <WalletProvider>
+        <div id="portal-root"></div>
         <StakingPageClient />
       </WalletProvider>
     </ThemeProvider>

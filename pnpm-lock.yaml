@@ -8,12 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@fontsource/inter':
-        specifier: ^5.1.1
-        version: 5.2.5
-      '@fontsource/raleway':
-        specifier: ^5.2.5
-        version: 5.2.5
       '@polkadot/api':
         specifier: ^16.0.1
         version: 16.0.1
@@ -44,6 +38,9 @@ importers:
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       lucide-react:
         specifier: ^0.511.0
         version: 0.511.0(react@19.1.0)
@@ -448,12 +445,6 @@ packages:
 
   '@ethersproject/web@5.8.0':
     resolution: {integrity: sha512-j7+Ksi/9KfGviws6Qtf9Q7KCqRhpwrYKQPs+JBA/rKVFF/yaWLHJEH3zfVP2plVu+eys0d2DlFmhoQJayFewcw==}
-
-  '@fontsource/inter@5.2.5':
-    resolution: {integrity: sha512-kbsPKj0S4p44JdYRFiW78Td8Ge2sBVxi/PIBwmih+RpSXUdvS9nbs1HIiuUSPtRMi14CqLEZ/fbk7dj7vni1Sg==}
-
-  '@fontsource/raleway@5.2.5':
-    resolution: {integrity: sha512-gVFV8Yi8Y5h8sQw0U/F6TQID53DVIWPuRxqBLOBxwLbQma42JAwqTZ+pi3eDjpm20/rjS2XoVJH5hnMx1KFB+g==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -3042,10 +3033,6 @@ snapshots:
       '@ethersproject/logger': 5.8.0
       '@ethersproject/properties': 5.8.0
       '@ethersproject/strings': 5.8.0
-
-  '@fontsource/inter@5.2.5': {}
-
-  '@fontsource/raleway@5.2.5': {}
 
   '@humanfs/core@0.19.1': {}
 

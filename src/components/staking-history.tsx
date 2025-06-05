@@ -13,41 +13,40 @@ import {
 import { RefreshCw } from "lucide-react"
 
 export default function StakingHistory() {
-
   const { connected, walletAddress, registerRefreshCallback, tokenSymbol } = useWallet()
   const [activeTab, setActiveTab] = useState("staking")
   const [stakingTransactions, setStakingTransactions] = useState<StakingHistoryItem[]>([])
+  const [unstakingTransactions, setUnstakingTransactions] = useState<StakingHistoryItem[]>([])
   const [transferTransactions, setTransferTransactions] = useState<any[]>([])
   const [stakingLoading, setStakingLoading] = useState(false)
+  const [unstakingLoading, setUnstakingLoading] = useState(false)
   const [transfersLoading, setTransfersLoading] = useState(false)
   const [isRefreshing, setIsRefreshing] = useState(false)
 
-  const stake = stakingTransactions.filter((tx) => tx.eventType === "Stake")
-  const unstake = stakingTransactions.filter((tx) => tx.eventType === "Unstake")
-
   async function fetchStakingData() {
     if (!connected || !walletAddress) return
-
     setStakingLoading(true)
+    setUnstakingLoading(true)
     try {
-      const transactions = await fetchStakingHistory(walletAddress, tokenSymbol)
-      setStakingTransactions(transactions)
+      const { staking, unstaking } = await fetchStakingHistory(walletAddress, tokenSymbol)
+      setStakingTransactions(staking)
+      setUnstakingTransactions(unstaking)
     } catch (error) {
-      console.error("Failed to load staking history:", error)
+      console.error(error)
     } finally {
       setStakingLoading(false)
+      setUnstakingLoading(false)
     }
   }
 
   async function fetchTransferData() {
     if (!connected || !walletAddress) return
-
     setTransfersLoading(true)
     try {
       const transactions = await fetchTransferHistory(walletAddress, tokenSymbol)
       setTransferTransactions(transactions)
     } catch (error) {
-      console.error("Failed to load transfer history:", error)
+      console.error(error)
     } finally {
       setTransfersLoading(false)
     }
@@ -55,7 +54,6 @@ export default function StakingHistory() {
 
   const refreshTransactions = async () => {
     if (isRefreshing || !connected || !walletAddress) return
-
     setIsRefreshing(true)
     try {
       await Promise.all([fetchStakingData(), fetchTransferData()])
@@ -66,21 +64,17 @@ export default function StakingHistory() {
 
   useEffect(() => {
     let isMounted = true
-
     async function loadInitialData() {
       if (!connected || !walletAddress || !isMounted) return
-
       try {
         await Promise.all([fetchStakingData(), fetchTransferData()])
       } catch (error) {
-        console.error("Failed to load transaction history:", error)
+        console.error(error)
       }
     }
-
     if (connected && walletAddress) {
       loadInitialData()
     }
-
     return () => {
       isMounted = false
     }
@@ -97,10 +91,10 @@ export default function StakingHistory() {
 
   const getExplorerUrl = (hash: string, tokenSymbol: string) => {
     if (tokenSymbol === "QTZ") {
-      return `https://quartz.subscan.io/extrinsic/${hash}?tab=event`;
+      return `https://quartz.subscan.io/extrinsic/${hash}?tab=event`
     }
-    return `https://unique.subscan.io/extrinsic/${hash}?tab=event`;
-  };
+    return `https://unique.subscan.io/extrinsic/${hash}?tab=event`
+  }
 
   return (
     <section className="py-12 bg-white dark:bg-gray-800">
@@ -109,7 +103,7 @@ export default function StakingHistory() {
           <h2 className="text-2xl font-bold">Your Transaction History</h2>
           <button
             onClick={refreshTransactions}
-            disabled={isRefreshing || stakingLoading || transfersLoading}
+            disabled={isRefreshing || stakingLoading || unstakingLoading || transfersLoading}
             className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <RefreshCw className={`w-4 h-4 !fill-none ${isRefreshing ? "animate-spin" : ""}`} />
@@ -128,7 +122,7 @@ export default function StakingHistory() {
                 }`}
                 onClick={() => setActiveTab("staking")}
               >
-                Staking History ({stake.length})
+                Staking History ({stakingTransactions.length})
               </button>
               <button
                 className={`px-6 py-3 text-sm font-medium ${
@@ -138,9 +132,9 @@ export default function StakingHistory() {
                 }`}
                 onClick={() => setActiveTab("unstaking")}
               >
-                Unstaking History ({unstake.length})
+                Unstaking History ({unstakingTransactions.length})
               </button>
-              <button
+              {/* <button
                 className={`px-6 py-3 text-sm font-medium ${
                   activeTab === "transfers"
                     ? "border-b-2 border-blue-500 text-blue-500"
@@ -149,7 +143,7 @@ export default function StakingHistory() {
                 onClick={() => setActiveTab("transfers")}
               >
                 Transfers ({transferTransactions.length})
-              </button>
+              </button> */}
             </div>
           </div>
 
@@ -159,7 +153,7 @@ export default function StakingHistory() {
                 <div className="flex justify-center py-8">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
                 </div>
-              ) : stake.length === 0 ? (
+              ) : stakingTransactions.length === 0 ? (
                 <div className="text-center py-8 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <p className="text-gray-500 dark:text-gray-400">No staking history found</p>
                 </div>
@@ -189,7 +183,7 @@ export default function StakingHistory() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                      {stake.map((tx, index) => (
+                      {stakingTransactions.map((tx, index) => (
                         <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                             {tx.blockNumber}
@@ -205,7 +199,7 @@ export default function StakingHistory() {
                             </a>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
-                            {formatDate(tx.createdAt)}
+                            {formatDate(tx.blockTimestamp)}
                           </td>
                           <td className="px-6 py-4">
                             <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-800 dark:text-green-100">
@@ -227,11 +221,11 @@ export default function StakingHistory() {
                 </div>
               )
             ) : activeTab === "unstaking" ? (
-              stakingLoading ? (
+              unstakingLoading ? (
                 <div className="flex justify-center py-8">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
                 </div>
-              ) : unstake.length === 0 ? (
+              ) : unstakingTransactions.length === 0 ? (
                 <div className="text-center py-8 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <p className="text-gray-500 dark:text-gray-400">No unstaking history found</p>
                 </div>
@@ -261,7 +255,7 @@ export default function StakingHistory() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                      {unstake.map((tx, index) => (
+                      {unstakingTransactions.map((tx, index) => (
                         <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                             {tx.blockNumber}
@@ -277,7 +271,7 @@ export default function StakingHistory() {
                             </a>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
-                            {formatDate(tx.createdAt)}
+                            {formatDate(tx.blockTimestamp)}
                           </td>
                           <td className="px-6 py-4">
                             <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-800 dark:text-green-100">
@@ -348,7 +342,7 @@ export default function StakingHistory() {
                           </a>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
-                          {formatDate(tx.createdAt)}
+                          {formatDate(tx.blockTimestamp)}
                         </td>
                         <td className="px-6 py-4">
                           <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-800 dark:text-green-100">

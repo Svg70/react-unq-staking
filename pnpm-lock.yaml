@@ -60,8 +60,8 @@ importers:
         specifier: ^7.6.0
         version: 7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       sdk-2:
-        specifier: npm:@unique-nft/sdk@2.6.2-0
-        version: '@unique-nft/sdk@2.6.2-0'
+        specifier: npm:@unique-nft/sdk@2.7.0
+        version: '@unique-nft/sdk@2.7.0'
       sonner:
         specifier: ^2.0.3
         version: 2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1238,8 +1238,8 @@ packages:
   '@unique-nft/sdk@0.7.7':
     resolution: {integrity: sha512-I/LJGPtb+C7rXgI+BZ3YUcy6P3A/XQTW7fNvsGw3+40Kp9MsOkG380PLcruVRIl2UyiD/zujty1cXmTh7aWZng==}
 
-  '@unique-nft/sdk@2.6.2-0':
-    resolution: {integrity: sha512-lAeh+bIeaQZZEfYHQtQ2hjLx5nj1/LMVxpf/VEXlF2BmqrOyCgnYcPMJVi3KOCgFbjQwrqaLHURdLoEQ0WocPg==}
+  '@unique-nft/sdk@2.7.0':
+    resolution: {integrity: sha512-lQOprHvD/H952f+Tj69br1bFO5zedpe/PHuQBop7+4uPp2x0RwF9nmpw14xPEZ7cxajPGLwxXflFyaXlosSnUQ==}
 
   '@unique-nft/sr25519@0.0.2':
     resolution: {integrity: sha512-41DJwU8aX56MAlNgmhAOYaE3ie+7HoETsVhqv5d3Pk7dpr1Aezmzihl5fqfLDgx0XeD8Q1QHY9pYAmsNmgQd2A==}
@@ -4000,7 +4000,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@unique-nft/sdk@2.6.2-0':
+  '@unique-nft/sdk@2.7.0':
     dependencies:
       '@unique-nft/schemas': 2.1.8
       '@unique-nft/sr25519': 0.0.2

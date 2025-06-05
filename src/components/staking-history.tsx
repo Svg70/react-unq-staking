@@ -27,50 +27,33 @@ export default function StakingHistory() {
     if (!connected || !walletAddress) return
     setStakingLoading(true)
     setUnstakingLoading(true)
-    try {
-      const { staking, unstaking } = await fetchStakingHistory(walletAddress, tokenSymbol)
-      setStakingTransactions(staking)
-      setUnstakingTransactions(unstaking)
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setStakingLoading(false)
-      setUnstakingLoading(false)
-    }
+    const { staking, unstaking } = await fetchStakingHistory(walletAddress, tokenSymbol)
+    setStakingTransactions(staking)
+    setUnstakingTransactions(unstaking)
+    setStakingLoading(false)
+    setUnstakingLoading(false)
   }
 
   async function fetchTransferData() {
     if (!connected || !walletAddress) return
     setTransfersLoading(true)
-    try {
-      const transactions = await fetchTransferHistory(walletAddress, tokenSymbol)
-      setTransferTransactions(transactions)
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setTransfersLoading(false)
-    }
+    const transactions = await fetchTransferHistory(walletAddress, tokenSymbol)
+    setTransferTransactions(transactions)
+    setTransfersLoading(false)
   }
 
   const refreshTransactions = async () => {
     if (isRefreshing || !connected || !walletAddress) return
     setIsRefreshing(true)
-    try {
-      await Promise.all([fetchStakingData(), fetchTransferData()])
-    } finally {
-      setIsRefreshing(false)
-    }
+    await Promise.all([fetchStakingData(), fetchTransferData()])
+    setIsRefreshing(false)
   }
 
   useEffect(() => {
     let isMounted = true
     async function loadInitialData() {
       if (!connected || !walletAddress || !isMounted) return
-      try {
-        await Promise.all([fetchStakingData(), fetchTransferData()])
-      } catch (error) {
-        console.error(error)
-      }
+      await Promise.all([fetchStakingData(), fetchTransferData()])
     }
     if (connected && walletAddress) {
       loadInitialData()
@@ -314,7 +297,7 @@ export default function StakingHistory() {
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                         Time
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font.medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                         Status
                       </th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">

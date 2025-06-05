@@ -72,9 +72,9 @@ export default function StakingHistory() {
     return null
   }
 
-  const getExplorerUrl = (hash: string, tokenSymbol: string) => {
+  const getExplorerUrl = (hash: string, tokenSymbol: string, blockNumber?: number) => {
     if (tokenSymbol === "QTZ") {
-      return `https://quartz.subscan.io/extrinsic/${hash}?tab=event`
+      return `https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fus-ws-quartz.unique.network#/explorer/query/${blockNumber}`
     }
     return `https://unique.subscan.io/extrinsic/${hash}?tab=event`
   }
@@ -105,7 +105,7 @@ export default function StakingHistory() {
                 }`}
                 onClick={() => setActiveTab("staking")}
               >
-                Staking History ({stakingTransactions.length})
+                Staking ({stakingTransactions.length})
               </button>
               <button
                 className={`px-6 py-3 text-sm font-medium ${
@@ -115,7 +115,7 @@ export default function StakingHistory() {
                 }`}
                 onClick={() => setActiveTab("unstaking")}
               >
-                Unstaking History ({unstakingTransactions.length})
+                Unstaking ({unstakingTransactions.length})
               </button>
               {/* <button
                 className={`px-6 py-3 text-sm font-medium ${
@@ -173,7 +173,7 @@ export default function StakingHistory() {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-mono">
                             <a
-                              href={getExplorerUrl(tx.hash, tokenSymbol)}
+                              href={getExplorerUrl(tx.hash, tokenSymbol, tx.blockNumber)}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-blue-600 hover:text-blue-800 hover:underline"
@@ -245,7 +245,7 @@ export default function StakingHistory() {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-mono">
                             <a
-                              href={getExplorerUrl(tx.hash, tokenSymbol)}
+                              href={getExplorerUrl(tx.hash, tokenSymbol, tx.blockNumber)}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-blue-600 hover:text-blue-800 hover:underline"
@@ -316,7 +316,7 @@ export default function StakingHistory() {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-mono">
                           <a
-                            href={getExplorerUrl(tx.hash, tokenSymbol)}
+                            href={getExplorerUrl(tx.hash, tokenSymbol, tx.blockNumber)}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-blue-600 hover:text-blue-800 hover:underline"

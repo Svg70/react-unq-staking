@@ -215,7 +215,7 @@ export default function StakingForm({
                             <span className="font-medium dark:text-gray-200">18%</span>
                         </div>
 
-                        <div className="flex justify-between items-center text-lg font-normal">
+                        <div className="flex justify-between items-center font-normal">
                             <span className="text-gray-700 dark:text-gray-300">Transaction cost</span>
                             <span className=" dark:text-gray-200">≈0.1 {tokenSymbol}</span>
                         </div>

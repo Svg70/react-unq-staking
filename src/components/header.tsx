@@ -43,38 +43,39 @@ export default function Header() {
 
             <div className="sm:flex items-center space-x-4 ml-auto absolute right-[24px] top-[50px]">
               {!connected && (
-                <button
+                <div
                   onClick={() => setIsWalletModalOpen(true)}
-                  className="px-6 py-[4px] mt-[80px] rounded-[14px] text-lg font-medium border bg-blue-500 text-white border-blue-500"
+                  className="px-6 py-[4px] rounded-[14px] text-lg font-medium border bg-blue-500 text-white border-blue-500 cursor-pointer"
                 >
                   connect wallet
-                </button>
+                </div>
               )}
 
               {connected && (
                 <div className="relative" ref={dropdownRef}>
-                  <button
+                  <div
                     onClick={() => setIsWalletDropdownOpen(v => !v)}
-                    className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md"
+                    className="px-6 py-[4px] rounded-[14px] text-lg font-medium border bg-blue-500 text-white border-blue-500 cursor-pointer"
                   >
                     {walletAddress?.slice(0, 6)}…{walletAddress?.slice(-6)}
-                  </button>
+                  </div>
                   {isWalletDropdownOpen && (
                     <div
-                      className={`absolute right-0 mt-2 w-48 shadow-lg rounded-md z-50 ${
-                        resolvedTheme === "dark" ? "bg-blue-600" : "bg-blue-500"
+                      className={`absolute right-0 mt-2 w-[200px] h-[70px] shadow-lg rounded-md z-50 flex justify-center items-center ${
+                        resolvedTheme === "dark" ? "bg-gray-100" : "bg-blue-900"
                       }`}
                     >
-                      <button
+                      <div
                         onClick={() => {
                           setIsWalletModalOpen(true)
                           setIsWalletDropdownOpen(false)
                         }}
-                        className="w-full text-left px-4 py-2 hover:bg-opacity-90 text-white"
+                        className="w-[180px] h-[30px] bg-white text-blue-900 dark:bg-gray-700 dark:text-gray-200 rounded-md flex justify-center items-center hover:opacity-80 transition-colors cursor-pointer"
                       >
-                        Connect New Wallet
-                      </button>
+                        Switch Account
+                      </div>
                     </div>
+
                   )}
                 </div>
               )}

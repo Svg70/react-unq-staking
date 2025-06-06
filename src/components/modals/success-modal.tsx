@@ -5,17 +5,18 @@ import { useWallet } from "@/context/wallet-context"
 
 interface SuccessModalProps {
   transactionHash: string
+  blockNumber?: string
   onClose: () => void
   isUnstaking: boolean
 }
 
-export default function SuccessModal({ transactionHash, onClose, isUnstaking }: SuccessModalProps) {
+export default function SuccessModal({ transactionHash, blockNumber, onClose, isUnstaking }: SuccessModalProps) {
   const [isVisible, setIsVisible] = useState(false)
   const { tokenSymbol, getSubscanUrl } = useWallet()
 
   const hash = typeof transactionHash === "string" ? transactionHash : ""
 
-  const subscanUrl = hash ? getSubscanUrl(hash) : ""
+  const subscanUrl = hash ? getSubscanUrl(hash, blockNumber) : ""
 
   useEffect(() => {
     setIsVisible(true)
@@ -65,7 +66,7 @@ export default function SuccessModal({ transactionHash, onClose, isUnstaking }: 
                 rel="noopener noreferrer"
                 className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 font-medium flex items-center justify-center fill-none"
               >
-                <span>View on Subscan</span>
+                <span>{subscanUrl.includes('polkadot.js') ? 'View on Polkadot js' : 'View on Subscan'}</span>
                 <svg
                   className="w-4 h-4 ml-1"
                   fill="none"

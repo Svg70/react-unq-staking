@@ -22,6 +22,7 @@ function StakingTabs() {
     const [showUnstakingSuccessModal, setShowUnstakingSuccessModal] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [transactionHash, setTransactionHash] = useState("")
+    const [blockNumber, setBlockNumber] = useState("")
 
     // Helper function to extract hash from transaction result
     const extractTransactionHash = (result: any): string => {
@@ -80,8 +81,10 @@ function StakingTabs() {
                                     onConnectWallet={() => setShowWalletModal(true)}
                                     onStartStaking={() => setShowProgressModal(true)}
                                     onStakingSuccess={(result) => {
+                                        console.log(result, 'STAKE_RES')
                                         setShowProgressModal(false)
                                         const hash = extractTransactionHash(result)
+                                        setBlockNumber(result?.block?.header?.number)
                                         setTransactionHash(hash)
                                         setShowSuccessModal(true)
                                     }}
@@ -100,6 +103,7 @@ function StakingTabs() {
                                         setShowProgressModal(false)
                                         const hash = extractTransactionHash(result)
                                         setTransactionHash(hash)
+                                        setBlockNumber(result?.block?.header?.number)
                                         setShowUnstakingSuccessModal(true)
                                     }}
                                     onUnstakingError={(error) => {
@@ -132,6 +136,7 @@ function StakingTabs() {
                     transactionHash={transactionHash}
                     onClose={() => setShowSuccessModal(false)}
                     isUnstaking={false}
+                    blockNumber={blockNumber}
                 />
             )}
 
@@ -140,6 +145,7 @@ function StakingTabs() {
                     transactionHash={transactionHash}
                     onClose={() => setShowUnstakingSuccessModal(false)}
                     isUnstaking={true}
+                    blockNumber={blockNumber}
                 />
             )}
         </>

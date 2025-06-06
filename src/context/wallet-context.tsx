@@ -131,28 +131,23 @@ export function WalletProvider({ children }: WalletProviderProps) {
   const connected = !!selectedAccount
   const walletAddress = selectedAccount?.address || null
 
-  // Generate Subscan URL for a transaction
   const getSubscanUrl = useCallback(
-    (txHash: string | any) => {
-      try {
-        let hash = txHash
-        if (typeof txHash === "object" && txHash !== null) {
-          hash = txHash.hash || ""
+
+    (hash: string, blockNumber?: number) => {
+      console.log(tokenSymbol,hash, blockNumber )
+      if (tokenSymbol === "QTZ") {
+        if (!blockNumber) {
+          console.error("QTZ get hash failed");
+          return "";
         }
-        hash = String(hash || "")
-        if (!hash) {
-          console.error("Invalid transaction hash for Subscan URL:", txHash)
-          return ""
-        }
-        const baseUrl = tokenSymbol === "QTZ" ? "https://quartz.subscan.io" : "https://unique.subscan.io"
-        return `${baseUrl}/extrinsic/${hash}`
-      } catch (error) {
-        console.error("Error generating Subscan URL:", error)
-        return ""
+        return `https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fus-ws-quartz.unique.network#/explorer/query/${blockNumber}`;
       }
+
+      return `https://unique.subscan.io/extrinsic/${hash}?tab=event`;
     },
     [tokenSymbol],
-  )
+  );
+
 
   // Persist wallet name in cookies
   useEffect(() => {

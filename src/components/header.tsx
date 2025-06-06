@@ -39,9 +39,9 @@ export default function Header() {
     <>
       <header className="sticky top-0 shadow-sm h-[0px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-end h-16 items-center">
+          <div className="flex justify-end items-center">
 
-            <div className="sm:flex items-center space-x-4 ml-auto">
+            <div className="sm:flex items-center space-x-4 ml-auto absolute right-[20px] top-[10px]">
               {!connected && (
                 <button
                   onClick={() => setIsWalletModalOpen(true)}
@@ -55,7 +55,7 @@ export default function Header() {
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setIsWalletDropdownOpen(v => !v)}
-                    className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md mt-[80px]"
+                    className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md"
                   >
                     {walletAddress?.slice(0, 6)}…{walletAddress?.slice(-6)}
                   </button>

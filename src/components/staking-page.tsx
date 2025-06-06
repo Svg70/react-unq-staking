@@ -15,6 +15,7 @@ import {TabProvider, useTab} from "@/context/tab-context"
 import { useWallet } from "../context/wallet-context"
 
 function StakingTabs() {
+	  const { connected } = useWallet()
     const {activeTab, setActiveTab} = useTab()
     const [showWalletModal, setShowWalletModal] = useState(false)
     const [showProgressModal, setShowProgressModal] = useState(false)
@@ -48,7 +49,12 @@ function StakingTabs() {
             <section className="py-16 pt-[20px] bg-gray-100 dark:bg-gray-800">
                 <div className="container mx-auto px-4">
                     <div
-                        className="max-w-2xl mx-auto bg-white dark:bg-gray-700 rounded-lg shadow-xl ring-1 ring-black/5 p-8">
+                        className="relative max-w-2xl mx-auto bg-white dark:bg-gray-700 rounded-lg shadow-xl ring-1 ring-black/5 p-8">
+												{connected && 
+													<div className="absolute top-[-50px] left-[0]">
+														<Header/>
+													</div>
+												}
                         <div className="mb-8">
                             {/* Tabs */}
                             <div className="flex justify-center mb-6">
@@ -169,7 +175,7 @@ export default function StakingPage() {
                     </div>
                 </section>
 
-                {connected && <Header/>}
+                {connected && <div className="h-[40px]"></div>}
                 <TabProvider>
                     <StakingTabs/>
                 </TabProvider>

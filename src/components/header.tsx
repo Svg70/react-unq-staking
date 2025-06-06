@@ -38,7 +38,7 @@ export default function Header() {
   return (
     <>
 
-        <div className="mx-auto max-w-[662px]">
+        <div>
 
             <div className="flex items-center">
               {!connected && (
@@ -69,7 +69,7 @@ export default function Header() {
                           setIsWalletModalOpen(true)
                           setIsWalletDropdownOpen(false)
                         }}
-                        className="w-[180px] h-[30px] text-blue-900 bg-blue-500 dark:text-gray-200 rounded-md flex justify-center items-center hover:opacity-80 transition-colors cursor-pointer"
+                        className="w-[180px] h-[30px] bg-blue-500 text-gray-200 rounded-md flex justify-center items-center hover:opacity-80 transition-colors cursor-pointer"
                       >
                         Switch Account
                       </div>
@@ -87,7 +87,7 @@ export default function Header() {
               </button> */}
             </div>
 
-</div>
+        </div>
       {isWalletModalOpen && <WalletSelection onClose={() => setIsWalletModalOpen(false)} />}
     </>
   )

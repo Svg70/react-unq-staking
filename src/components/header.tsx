@@ -41,7 +41,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-end items-center">
 
-            <div className="sm:flex items-center space-x-4 ml-auto absolute right-[20px] top-[10px]">
+            <div className="sm:flex items-center space-x-4 ml-auto absolute right-[24px] top-[50px]">
               {!connected && (
                 <button
                   onClick={() => setIsWalletModalOpen(true)}

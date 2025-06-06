@@ -6,7 +6,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const html = document.documentElement
     const sync = () => {
-      console.log('SWITCH_THEMES_WORKS', html.classList)
+
       const darkmode = html.classList.contains("darkmode")
       const dark = html.classList.contains("dark")
       if (darkmode && !dark) html.classList.add("dark")

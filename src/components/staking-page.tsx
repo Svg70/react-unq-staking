@@ -12,6 +12,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import StakingHistory from "@/components/staking-history"
 import {TabProvider, useTab} from "@/context/tab-context"
+import { useWallet } from "../context/wallet-context"
 
 function StakingTabs() {
     const {activeTab, setActiveTab} = useTab()
@@ -44,7 +45,7 @@ function StakingTabs() {
     return (
         <>
             {/* Staking Section */}
-            <section className="py-16 bg-gray-100 dark:bg-gray-800">
+            <section className="py-16 pt-[20px] bg-gray-100 dark:bg-gray-800">
                 <div className="container mx-auto px-4">
                     <div
                         className="max-w-2xl mx-auto bg-white dark:bg-gray-700 rounded-lg shadow-xl ring-1 ring-black/5 p-8">
@@ -153,9 +154,9 @@ function StakingTabs() {
 }
 
 export default function StakingPage() {
+    const { connected } = useWallet()
     return (
         <div className="flex flex-col min-h-screen">
-            <Header/>
             <main className="flex-grow bg-gray-100 dark:bg-gray-900">
                 <section className="pb-16 pt-[110px]">
                     <div className="container mx-auto px-4 text-center">
@@ -168,6 +169,7 @@ export default function StakingPage() {
                     </div>
                 </section>
 
+                {connected && <Header/>}
                 <TabProvider>
                     <StakingTabs/>
                 </TabProvider>

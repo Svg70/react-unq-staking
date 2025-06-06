@@ -37,11 +37,10 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 shadow-sm h-[0px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-end items-center">
 
-            <div className="sm:flex items-center space-x-4 ml-auto absolute right-[24px] top-[50px]">
+        <div className="mx-auto max-w-[662px]">
+
+            <div className="flex items-center">
               {!connected && (
                 <div
                   onClick={() => setIsWalletModalOpen(true)}
@@ -70,7 +69,7 @@ export default function Header() {
                           setIsWalletModalOpen(true)
                           setIsWalletDropdownOpen(false)
                         }}
-                        className="w-[180px] h-[30px] bg-white text-blue-900 dark:bg-gray-700 dark:text-gray-200 rounded-md flex justify-center items-center hover:opacity-80 transition-colors cursor-pointer"
+                        className="w-[180px] h-[30px] text-blue-900 bg-blue-500 dark:text-gray-200 rounded-md flex justify-center items-center hover:opacity-80 transition-colors cursor-pointer"
                       >
                         Switch Account
                       </div>
@@ -88,12 +87,7 @@ export default function Header() {
               </button> */}
             </div>
 
-          </div>
-        </div>
-
-
-      </header>
-
+</div>
       {isWalletModalOpen && <WalletSelection onClose={() => setIsWalletModalOpen(false)} />}
     </>
   )

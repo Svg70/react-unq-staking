@@ -1,96 +1,102 @@
 "use client"
 
-import { useWallet } from "@/context/wallet-context"
-import { toDecimalString } from "@/utils/toDecimalsString.ts"
+import {type BalanceDataItem, useWallet} from '@/context/wallet-context'
+import CustomTooltip from '@/components/custom-tooltip.tsx';
 
 interface BalanceInfoProps {
   activeTab?: "stake" | "unstake"
-  decimalPlaces?: number
 }
 
-export default function BalanceInfo({
-  activeTab = "stake",
-  decimalPlaces = 4,
-}: BalanceInfoProps) {
-  const { connected, walletAddress, tokenSymbol, isLoading, balanceData } = useWallet()
+type BalanceSpanProps = {
+  className?: string
+  value?: Partial<Pick<BalanceDataItem, "raw" | "decimals" | "unit">>
+  isLoading?: boolean
+  displayDecimals?: number
+}
+
+export const BalanceSpan = (props: BalanceSpanProps) => {
+  const {
+    className = "font-medium",
+    value,
+    isLoading = false,
+    displayDecimals = 4,
+  } = props
+
+  const decimals = value?.decimals ?? 18
+  const unit = value?.unit ?? ""
+
+  if (isLoading) return <span className={className}>...</span>
+
+  const raw = BigInt(value?.raw ?? 0)
+  if (raw === 0n) return <span className={className}>0</span>
+
+  const divisor = 10n ** BigInt(decimals)
+  const whole = raw / divisor
+  const fraction = raw % divisor
+  const padded = fraction.toString().padStart(decimals, "0")
+  const displayFraction = padded.slice(0, displayDecimals)
+
+  const isNegligible = whole === 0n && displayFraction.split("").every((d) => d === "0")
+  if (isNegligible) {
+    const fullValue = `${whole.toString()}.${padded}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+
+    return (<CustomTooltip text={fullValue} position="left">
+      <span className={className}>≈ 0</span>
+    </CustomTooltip>)
+  }
+
+  const wholeFormatted = whole.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+
+  return (
+    <span className={`inline-flex items-baseline ${className}`}>
+      <span>{wholeFormatted}</span>
+      <span>.{displayFraction}</span>
+      <span className="ml-1">{unit}</span>
+    </span>
+  )
+}
+
+export default function BalanceInfo({ activeTab = "stake" }: BalanceInfoProps) {
+  const { connected, walletAddress, isLoading, balanceData } = useWallet()
 
   if (!connected || !walletAddress) return null
 
   const isDataLoading = isLoading || !balanceData
 
-  const formatFixed = (raw: string, decimals: number): string => {
-    const decimalStr = toDecimalString(raw, decimals)
-    const value = parseFloat(decimalStr)
-    return new Intl.NumberFormat("en-US", {
-      minimumFractionDigits: decimalPlaces,
-      maximumFractionDigits: decimalPlaces,
-    }).format(value)
-  }
-
-  const total = isDataLoading
-    ? "..."
-    : balanceData?.totalBalance
-    ? `${formatFixed(balanceData.totalBalance.raw, balanceData.totalBalance.decimals)} ${tokenSymbol}`
-    : `0.${"0".repeat(decimalPlaces)} ${tokenSymbol}`
-
-  const staked = isDataLoading
-    ? "..."
-    : balanceData?.stakedBalance
-    ? `${formatFixed(balanceData.stakedBalance.raw, balanceData.stakedBalance.decimals)} ${tokenSymbol}`
-    : `0.${"0".repeat(decimalPlaces)} ${tokenSymbol}`
-
-
-  const unstaked = isDataLoading
-    ? "..."
-    : balanceData?.unstakedBalance
-    ? `${formatFixed(balanceData.unstakedBalance.raw, balanceData.unstakedBalance.decimals)} ${tokenSymbol}`
-    : `0.${"0".repeat(decimalPlaces)} ${tokenSymbol}`
-
-  const pending = isDataLoading
-    ? "..."
-    : balanceData?.lockedBalance
-    ? `${formatFixed(balanceData.lockedBalance.raw, balanceData.lockedBalance.decimals)} ${tokenSymbol}`
-    : `0.${"0".repeat(decimalPlaces)} ${tokenSymbol}`
-
-  const available = isDataLoading
-    ? "..."
-    : balanceData?.availableBalance
-    ? `${formatFixed(balanceData.availableBalance.raw, balanceData.availableBalance.decimals)} ${tokenSymbol}`
-    : `0.${"0".repeat(decimalPlaces)} ${tokenSymbol}`
-
   return (
-    <div className="space-y-2">
-      {activeTab === "stake" ? (
-        <>
-          <div className="flex justify-between text-base font-normal">
-            <span className="text-gray-700 dark:text-gray-300">Total balance:</span>
-            <span className="tabular-nums">{total}</span>
-          </div>
-          <div className="flex justify-between text-base font-normal">
-            <span className="text-gray-700 dark:text-gray-300">Staked volume:</span>
-            <span className="tabular-nums">{staked}</span>
-          </div>
-          <div className="flex justify-between text-base font-normal">
-            <span className="text-gray-700 dark:text-gray-300">Pending unstake:</span>
-            <span className="tabular-nums">{pending}</span>
-          </div>
-          <div className="flex justify-between text-base font-normal">
-            <span className="text-gray-700 dark:text-gray-300">Available to stake:</span>
-            <span className="tabular-nums">{available}</span>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="flex justify-between text-base font-normal">
-            <span className="text-gray-600 dark:text-gray-300">Pending unstake:</span>
-            <span className="tabular-nums font-medium">{unstaked}</span>
-          </div>
-          <div className="flex justify-between text-base font-normal">
-            <span className="text-gray-600 dark:text-gray-300">Staked volume:</span>
-            <span className="tabular-nums font-medium">{staked}</span>
-          </div>
-        </>
-      )}
-    </div>
+      <div className="space-y-2">
+        <div className="flex justify-between">
+          <span className="text-gray-700 dark:text-gray-300">Total balance:</span>
+          <BalanceSpan value={balanceData?.totalBalance} isLoading={isDataLoading} />
+        </div>
+
+        {activeTab === "stake" ? (
+            <>
+              <div className="flex justify-between">
+                <span className="text-gray-700 dark:text-gray-300">Staked volume:</span>
+                <BalanceSpan value={balanceData?.stakedBalance} isLoading={isDataLoading} />
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-700 dark:text-gray-300">Pending unstake:</span>
+                <BalanceSpan value={balanceData?.unstakedBalance} isLoading={isDataLoading} />
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-700 dark:text-gray-300">Available to stake:</span>
+                <BalanceSpan value={balanceData?.availableBalance} isLoading={isDataLoading} />
+              </div>
+            </>
+        ) : (
+            <>
+              <div className="flex justify-between">
+                <span className="text-gray-600 dark:text-gray-300">Pending unstake:</span>
+                <BalanceSpan value={balanceData?.unstakedBalance} isLoading={isDataLoading} />
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600 dark:text-gray-300">Staked volume:</span>
+                <BalanceSpan value={balanceData?.stakedBalance} isLoading={isDataLoading} />
+              </div>
+            </>
+        )}
+      </div>
   )
 }

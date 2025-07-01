@@ -46,7 +46,7 @@ export default function FAQ() {
       id: "stake-times",
       question: "How many times can I stake my tokens?",
       answer:
-        "Users can stake 10 times from one wallet. All staked tokens must be unstaked simultaneously. However, there is a one-week waiting period for tokens to arrive in the user's wallet.",
+        "Users can stake 10 times from one wallet.",
     },
     {
       id: "vesting",
@@ -61,42 +61,47 @@ export default function FAQ() {
   }
 
   return (
-    <section className="py-16 bg-gray-100 dark:bg-gray-800" id="FAQ">
-      <div className="container mx-auto px-4">
-        <header className="mb-12 text-center">
-          <h2 className="font-raleway text-3xl font-extrabold">FAQ</h2>
-        </header>
+      <section id="FAQ" className="py-16 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <header className="mb-12 text-center">
+            <h2 className="text-3xl font-bold">FAQ</h2>
+          </header>
 
-        <div className="max-w-3xl mx-auto">
-          {faqItems.map((item) => (
-            <div key={item.id} className="mb-4 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-              <button
-                className="flex justify-between items-center w-full p-[20px] text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
-                onClick={() => toggleItem(item.id)}
-              >
-                <h3 className="font-raleway text-2xl font-bold">{item.question}</h3>
-                <svg
-                  className={`w-5 h-5 transition-transform ${openItem === item.id ? "rotate-180" : ""}`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
+          <div className="max-w-3xl mx-auto">
+            {faqItems.map((item) => (
+                <div
+                    key={item.id}
+                    className="mb-4 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-              {openItem === item.id && (
-                <div className="p-[20px] border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-                  <p className="text-base font-normal text-gray-600 dark:text-gray-400">{item.answer}</p>
+                  <button
+                      className="flex justify-between items-center w-full p-5 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
+                      onClick={() => toggleItem(item.id)}
+                  >
+                    <h3 className="text-lg font-medium">{item.question}</h3>
+                    <svg
+                        className={`w-5 h-5 transition-transform ${openItem === item.id ? 'rotate-180' : ''}`}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                      <path
+                          fillRule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                  {openItem === item.id && (
+                      <div className="p-5 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                        <p className="text-gray-600 dark:text-gray-400">
+                          {item.answer}
+                        </p>
+                      </div>
+                  )}
                 </div>
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
   )
 }

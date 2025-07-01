@@ -46,7 +46,7 @@ export default function FAQ() {
       id: "stake-times",
       question: "How many times can I stake my tokens?",
       answer:
-        "Users can stake 10 times from one wallet. All staked tokens must be unstaked simultaneously. However, there is a one-week waiting period for tokens to arrive in the user's wallet.",
+        "Users can stake 10 times from one wallet.",
     },
     {
       id: "vesting",

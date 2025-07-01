@@ -138,7 +138,7 @@ export default function StakingPage() {
           <div className="container mx-auto px-4 text-center">
             
             
-                <section className="pb-16 pt-[110px]">
+                <section className="pb-16">
                     <div className="container mx-auto px-4 text-center">
                         <h1 className="font-raleway text-[52px] md:text-[52px] font-black leading-[52px] md:leading-[52px] tracking-[-1.35px] mb-4">
                             <div className="text-gray-900 dark:text-white">UNIQUE STAKING HUB</div>

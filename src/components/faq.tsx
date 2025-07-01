@@ -47,7 +47,7 @@ export default function FAQ() {
       id: "stake-times",
       question: "How many times can I stake my tokens?",
       answer:
-        "Users can stake 10 times from one wallet. All staked tokens must be unstaked simultaneously. However, there is a one-week waiting period for tokens to arrive in the user's wallet.",
+        "Users can stake 10 times from one wallet.",
     },
     {
       id: "vesting",
@@ -62,41 +62,25 @@ export default function FAQ() {
   }
 
   return (
-      <section id="FAQ" className={cn("st-py-16 st-bg-gray-50 dark:st-bg-gray-900")}>
-        <div className={cn("st-container st-mx-auto st-px-4")}>
-          <header className={cn("st-mb-12 st-text-center")}>
-            <h2 className={cn("st-text-3xl st-font-bold")}>FAQ</h2>
+      <section id="FAQ" className="py-16 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <header className="mb-12 text-center">
+            <h2 className="text-3xl font-bold">FAQ</h2>
           </header>
 
-          <div className={cn("st-max-w-3xl st-mx-auto")}>
+          <div className="max-w-3xl mx-auto">
             {faqItems.map((item) => (
                 <div
                     key={item.id}
-                    className={cn(
-                        "st-mb-4",
-                        "st-border",
-                        "st-border-gray-200 dark:st-border-gray-700",
-                        "st-rounded-lg",
-                        "st-overflow-hidden"
-                    )}
+                    className="mb-4 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
                 >
                   <button
-                      className={cn(
-                          "st-flex st-justify-between st-items-center",
-                          "st-w-full st-p-5",
-                          "st-text-left",
-                          "st-bg-white dark:st-bg-gray-800",
-                          "st-hover:bg-gray-50 dark:st-hover:bg-gray-700"
-                      )}
+                      className="flex justify-between items-center w-full p-5 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
                       onClick={() => toggleItem(item.id)}
                   >
-                    <h3 className={cn("st-text-lg st-font-medium")}>{item.question}</h3>
+                    <h3 className="text-lg font-medium">{item.question}</h3>
                     <svg
-                        className={cn(
-                            "st-w-5 st-h-5",
-                            "st-transition-transform",
-                            openItem === item.id && "st-rotate-180"
-                        )}
+                        className={`w-5 h-5 transition-transform ${openItem === item.id ? 'rotate-180' : ''}`}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -109,15 +93,8 @@ export default function FAQ() {
                     </svg>
                   </button>
                   {openItem === item.id && (
-                      <div
-                          className={cn(
-                              "st-p-5",
-                              "st-border-t",
-                              "st-border-gray-200 dark:st-border-gray-700",
-                              "st-bg-white dark:st-bg-gray-800"
-                          )}
-                      >
-                        <p className={cn("st-text-gray-600 dark:st-text-gray-400")}>
+                      <div className="p-5 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                        <p className="text-gray-600 dark:text-gray-400">
                           {item.answer}
                         </p>
                       </div>

@@ -1,13 +1,12 @@
 "use client"
 
-// WalletProvider.tsx
-
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode, useMemo } from "react"
 import type { Wallet, WalletAccount } from "@talismn/connect-wallets"
 import type { Signer as PolkadotSigner, SignerResult } from "@polkadot/api/types"
 import { Sdk } from "@unique-nft/sdk/full"
 import { getCookie, setCookie } from "@/utils/cookies"
 import type { SignerPayloadJSONDto } from "@unique-nft/sdk"
+import {useIsMobile} from '@/components/ui/use-mobile.tsx';
 
 const TOTAL_STAKES = 10;
 
@@ -21,7 +20,7 @@ interface UNIQUE_SDK_SignTxResultResponse {
   signature: string
 }
 
-interface BalanceDataItem {
+export interface BalanceDataItem {
     raw: string
     amount: string
     formatted: string
@@ -114,6 +113,7 @@ const COOKIE_WALLET_NAME = "stakefin_wallet_name"
 
 export function WalletProvider({ children }: WalletProviderProps) {
   const [wallet, _setWallet] = useState<Wallet>()
+  const isMobile = useIsMobile()
   const [accounts, _setAccounts] = useState<IPolkadotExtensionAccountForSDK[]>([])
   const [selectedAccount, _setSelectedAccount] = useState<IPolkadotExtensionAccountForSDK | null>(null)
   const [stakesLeft, setStakesLeft] = useState(0)
@@ -409,7 +409,14 @@ const transformAccount = useCallback(
         }
         setIsConnecting(true)
         const { getWallets } = await import("@talismn/connect-wallets")
-        const availableWallets = getWallets()
+        const availableWallets = getWallets().filter((w) => {
+          if (w.extensionName !== 'polkadot-js') return true
+
+          const isNova = w.title === 'Nova Wallet'
+
+          return isMobile ? isNova : !isNova
+        })
+
         const savedWallet = availableWallets.find((w) => w.extensionName === savedWalletName)
         if (!savedWallet || !savedWallet.installed) {
           setIsConnecting(false)
@@ -494,7 +501,6 @@ const transformAccount = useCallback(
       const args = isAll || !amount ? [] : [amount]
       const result = await sdk.extrinsics.submitWaitResult(
         { address: selectedAccount.address, section: "appPromotion", method, args },
-        //@ts-ignore
         selectedAccount.uniqueSdkSigner,
       )
       await refreshBalances()

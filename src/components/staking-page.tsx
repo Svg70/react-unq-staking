@@ -8,10 +8,9 @@ import FAQ from "@/components/faq"
 import ProgressModal from "@/components/modals/progress-modal"
 import StatusModal from "@/components/modals/status-modal"
 import SuccessModal from "@/components/modals/success-modal"
-import Header from "@/components/header"
 import StakingHistory from "@/components/staking-history"
 import { TabProvider, useTab } from "@/context/tab-context"
-import { cn } from "../lib/utils"
+import { WalletButton } from '@/components/wallet-button.tsx';
 
 function StakingTabs() {
   const { activeTab, setActiveTab } = useTab()
@@ -35,31 +34,29 @@ function StakingTabs() {
 
   return (
     <>
-      <section className={cn("st-py-16 st-bg-white dark:st-bg-gray-800")}>
-        <div className={cn("st-container st-mx-auto st-px-4")}>
-          <div className={cn("st-max-w-2xl st-mx-auto st-bg-white dark:st-bg-gray-700 st-rounded-lg st-shadow-xl st-ring-1 st-ring-black/5 st-p-8")}>
-            <div className={cn("st-mb-8")}>
-              <div className={cn("st-flex st-justify-center st-mb-6")}>
-                <div className={cn("st-grid st-grid-cols-2 st-w-full st-max-w-md st-gap-4")}>
+      <section className="py-16 bg-white dark:bg-gray-800">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto bg-white dark:bg-gray-700 rounded-lg shadow-xl ring-1 ring-black/5 p-8">
+            <div className="mb-8">
+              <div className="flex justify-center mb-6">
+                <div className="grid grid-cols-2 w-full max-w-md gap-4">
                   <button
                       onClick={() => setActiveTab("stake")}
-                      className={cn(
-                          "st-px-6 st-py-3 st-rounded-md st-text-lg st-font-medium st-border",
+                      className={`px-6 py-3 rounded-md text-lg font-medium border ${
                           activeTab === "stake"
-                              ? "st-bg-blue-500 st-text-white st-border-blue-500"
-                              : "st-bg-white st-text-gray-700 st-border-gray-300 dark:st-bg-gray-800 dark:st-text-gray-200 dark:st-border-gray-600"
-                      )}
+                              ? "bg-blue-500 text-white border-blue-500"
+                              : "bg-white text-gray-700 border-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
+                      }`}
                   >
                     Stake
                   </button>
                   <button
                       onClick={() => setActiveTab("unstake")}
-                      className={cn(
-                          "st-px-6 st-py-3 st-rounded-md st-text-lg st-font-medium st-border",
+                      className={`px-6 py-3 rounded-md text-lg font-medium border ${
                           activeTab === "unstake"
-                              ? "st-bg-blue-500 st-text-white st-border-blue-500"
-                              : "st-bg-white st-text-gray-700 st-border-gray-300 dark:st-bg-gray-800 dark:st-text-gray-200 dark:st-border-gray-600"
-                      )}
+                              ? "bg-blue-500 text-white border-blue-500"
+                              : "bg-white text-gray-700 border-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
+                      }`}
                   >
                     Unstake
                   </button>
@@ -134,19 +131,23 @@ function StakingTabs() {
 
 export default function StakingPage() {
   return (
-    <div className={cn("st-flex st-flex-col st-min-h-screen")}>
-      <Header />
-      <main className={cn("st-flex-grow")}>
-        <section className={cn("st-bg-gray-100 dark:st-bg-gray-900 st-py-16")}>
-          <div className={cn("st-container st-mx-auto st-px-4 st-text-center")}>
-            <h1 className={cn("st-text-4xl md:st-text-5xl st-font-bold st-mb-4")}>
-              <span className={cn("st-text-gray-900 dark:st-text-white")}>UNIQUE STAKING HUB</span>
+    <div className="flex flex-col min-h-screen">
+
+      <main className="flex-grow">
+        <section className="bg-gray-100 dark:bg-gray-900 pt-16">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <span className="text-gray-900 dark:text-white">UNIQUE STAKING HUB</span>
               <br />
               <span className={cn("st-text-blue-500")}>IS AVAILABLE</span>
             </h1>
-            <p className={cn("st-text-xl")}>
+            <p className="text-xl">
               Earn 18% APY staking your UNQ and QTZ tokens
             </p>
+
+            <div className="py-3">
+              <WalletButton />
+            </div>
           </div>
         </section>
 

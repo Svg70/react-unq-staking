@@ -9,8 +9,8 @@ interface TokenSelectorProps {
 
 export default function TokenSelector({ selectedToken, onSelectToken }: TokenSelectorProps) {
   return (
-      <div className={cn("st-flex st-space-x-2")}>
-        <div className={cn("st-flex st-items-center")}>
+      <div className="flex space-x-2">
+        <div className="flex items-center">
           <input
               type="radio"
               id="token-unq"
@@ -18,19 +18,18 @@ export default function TokenSelector({ selectedToken, onSelectToken }: TokenSel
               value="UNQ"
               checked={selectedToken === "UNQ"}
               onChange={() => onSelectToken("UNQ")}
-              className={cn("st-hidden")}
+              className="hidden"
           />
           <label
               htmlFor="token-unq"
-              className={cn(
-                  "st-flex st-items-center st-px-4 st-py-3 st-rounded-md st-text-sm st-font-medium st-cursor-pointer st-border",
+              className={`flex items-center px-4 py-3 rounded-md text-sm font-medium cursor-pointer border ${
                   selectedToken === "UNQ"
-                      ? "st-bg-white st-text-gray-800 st-border-blue-500"
-                      : "st-bg-white st-text-gray-700 st-border-gray-300"
-              )}
+                      ? "bg-white text-gray-800 border-blue-500 border-4"
+                      : "bg-white text-gray-700 border-gray-300"
+              }`}
           >
             <svg
-                className={cn("st-w-5 st-h-5 st-mr-2 st-text-blue-500")}
+                className="w-5 h-5 mr-2 text-blue-500"
                 viewBox="0 0 25 24"
                 fill="none"
             >
@@ -45,7 +44,7 @@ export default function TokenSelector({ selectedToken, onSelectToken }: TokenSel
           </label>
         </div>
 
-        <div className={cn("st-flex st-items-center")}>
+        <div className="flex items-center">
           <input
               type="radio"
               id="token-quartz"
@@ -53,19 +52,18 @@ export default function TokenSelector({ selectedToken, onSelectToken }: TokenSel
               value="QTZ"
               checked={selectedToken === "QTZ"}
               onChange={() => onSelectToken("QTZ")}
-              className={cn("st-hidden")}
+              className="hidden"
           />
           <label
               htmlFor="token-quartz"
-              className={cn(
-                  "st-flex st-items-center st-px-4 st-py-3 st-rounded-md st-text-sm st-font-medium st-cursor-pointer st-border",
+              className={`flex items-center px-4 py-3 rounded-md text-sm font-medium cursor-pointer border ${
                   selectedToken === "QTZ"
-                      ? "st-bg-white st-text-gray-800 st-border-red-500"
-                      : "st-bg-white st-text-gray-700 st-border-gray-300"
-              )}
+                      ? "bg-white text-gray-800 border-red-500 border-4"
+                      : "bg-white text-gray-700 border-gray-300"
+              }`}
           >
             <svg
-                className={cn("st-w-5 st-h-5 st-mr-2 st-text-red-500")}
+                className="w-5 h-5 mr-2 text-red-500"
                 viewBox="0 0 24 24"
                 fill="none"
             >

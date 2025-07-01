@@ -60,14 +60,14 @@ importers:
         specifier: ^7.6.0
         version: 7.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       sdk-2:
-        specifier: npm:@unique-nft/sdk@2.6.2-0
-        version: '@unique-nft/sdk@2.6.2-0'
+        specifier: npm:@unique-nft/sdk@2.8.1
+        version: '@unique-nft/sdk@2.8.1'
       sonner:
         specifier: ^2.0.3
         version: 2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       tailwind-merge:
-        specifier: ^3.3.0
-        version: 3.3.0
+        specifier: ^3.3.1
+        version: 3.3.1
     devDependencies:
       '@eslint/js':
         specifier: ^9.25.0
@@ -1254,8 +1254,8 @@ packages:
   '@unique-nft/sdk@0.7.7':
     resolution: {integrity: sha512-I/LJGPtb+C7rXgI+BZ3YUcy6P3A/XQTW7fNvsGw3+40Kp9MsOkG380PLcruVRIl2UyiD/zujty1cXmTh7aWZng==}
 
-  '@unique-nft/sdk@2.6.2-0':
-    resolution: {integrity: sha512-lAeh+bIeaQZZEfYHQtQ2hjLx5nj1/LMVxpf/VEXlF2BmqrOyCgnYcPMJVi3KOCgFbjQwrqaLHURdLoEQ0WocPg==}
+  '@unique-nft/sdk@2.8.1':
+    resolution: {integrity: sha512-KckdZqFwddx6p4DD8c7OwM+ezEYA6JLyt2M7/oa9mRAngjhpq+Zvapx9Yx3ufL+Bq0fCfhy0iVY+aw3UXSqK4w==}
 
   '@unique-nft/sr25519@0.0.2':
     resolution: {integrity: sha512-41DJwU8aX56MAlNgmhAOYaE3ie+7HoETsVhqv5d3Pk7dpr1Aezmzihl5fqfLDgx0XeD8Q1QHY9pYAmsNmgQd2A==}
@@ -2427,8 +2427,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  tailwind-merge@3.3.0:
-    resolution: {integrity: sha512-fyW/pEfcQSiigd5SNn0nApUOxx0zB/dm6UDU/rEwc2c3sX2smWUNbapHv+QRqLGVp9GWX3THIa7MUGPo+YkDzQ==}
+  tailwind-merge@3.3.1:
+    resolution: {integrity: sha512-gBXpgUm/3rp1lMZZrM/w7D8GKqshif0zAymAhbCyIt8KMe+0v9DQ7cdYLR4FHH/cKpdTXb+A/tKKU3eolfsI+g==}
 
   tailwindcss@3.4.17:
     resolution: {integrity: sha512-w33E2aCvSDP0tW9RZuNXadXlkHXqFzSkQew/aIa2i/Sj8fThxwovwlXHSPXTbAHwEIhBFXAedUhP2tueAKP8Og==}
@@ -3968,7 +3968,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@unique-nft/sdk@2.6.2-0':
+  '@unique-nft/sdk@2.8.1':
     dependencies:
       '@unique-nft/schemas': 2.1.8
       '@unique-nft/sr25519': 0.0.2
@@ -5160,7 +5160,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  tailwind-merge@3.3.0: {}
+  tailwind-merge@3.3.1: {}
 
   tailwindcss@3.4.17:
     dependencies:

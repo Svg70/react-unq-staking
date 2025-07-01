@@ -4,15 +4,30 @@ const config: Config = {
   important: '#root',
   prefix: 'st-',
   darkMode: "class",
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+
   theme: {
+    fontFamily: {
+      raleway: ['Raleway', 'Arial', 'Helvetica','sans-serif'],
+      sans: ['Inter', 'sans-serif'],
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+
       colors: {
+        gray: {
+          100: '#f0f0f3',
+          300: '#9CAAB7',
+          700: '#152c68',
+          800: '#0a1635',
+          900: '#0a1635'
+        },
         blue: {
           50: "#f0f9ff",
           100: "#e0f2fe",
@@ -55,7 +70,7 @@ const config: Config = {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
-        border: "hsl(var(--border))",
+        // border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         chart: {

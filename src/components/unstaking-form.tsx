@@ -146,10 +146,22 @@ export default function UnstakingForm({
   }
 
   return (
-      <div className={cn("st-flex st-flex-col st-space-y-6")}>
-        <div>
-          <label className={cn("st-block st-text-sm st-font-medium st-text-gray-700 dark:st-text-gray-300 st-mb-2")}>Token</label>
-          <TokenSelector selectedToken={tokenSymbol} onSelectToken={setTokenSymbol} />
+    <div className="flex flex-col space-y-6">
+      <div>
+      <label className="block text-lg font-normal text-gray-700 dark:text-gray-300 mb-2">Token</label>
+        <TokenSelector selectedToken={tokenSymbol} onSelectToken={setTokenSymbol} />
+      </div>
+
+      {connected ? (
+        <WalletInfo activeTab="unstake" />
+      ) : (
+        <div className="flex justify-center">
+          <button
+            onClick={onConnectWallet}
+            className="w-full px-6 py-3 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 transition-colors"
+          >
+            Connect Wallet
+          </button>
         </div>
 
         {connected ? (
@@ -157,11 +169,13 @@ export default function UnstakingForm({
         ) : (
             <div className={cn("st-flex st-justify-center")}>
               <button
-                  onClick={onConnectWallet}
-                  className={cn(
-                      "st-w-full st-px-6 st-py-3 st-font-medium st-rounded-md st-transition-colors",
-                      "st-bg-blue-500 st-text-white st-hover:bg-blue-600 dark:st-bg-blue-600 dark:st-hover:bg-blue-700"
-                  )}
+                onClick={handleMaxAmount}
+                className={`absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 text-sm ${
+                  isMaxAmount
+                    ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
+                    : "bg-white text-blue-500 dark:bg-gray-700 dark:text-blue-300"
+                } rounded hover:bg-blue-50 dark:hover:bg-gray-600`}
+                disabled={isLoading || isUnstaking}
               >
                 Connect Wallet
               </button>
